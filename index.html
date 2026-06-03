@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cléssio Ferreira — Instrutor de Moto Cat. A | Campinas e Região</title>
-<meta name="description" content="Aulas particulares de moto em Campinas. Método personalizado, 23 anos de experiência. Aprovação no exame do DETRAN com atenção que autoescola não dá. Fale agora!">
+<title>Cléssio Ferreira — Instrutor de Trânsito Cat. A e B | Campinas e Região</title>
+<meta name="description" content="Aulas particulares de moto e carro em Campinas. Método personalizado para neurodivergentes, idosos e iniciantes. Aprenda no carro analógico manual. Fale agora!">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Serif+Display:ital@1&display=swap" rel="stylesheet">
@@ -42,7 +42,7 @@ nav.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.5);}
 .nav-logo{display:flex;align-items:center;gap:0.7rem;text-decoration:none;}
 .nav-logo img{height:44px;width:44px;border-radius:50%;object-fit:cover;}
 .nav-logo-txt{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:1px;color:var(--branco);line-height:1.15;}
-.nav-logo-sub{color:var(--ouro);font-size:0.65rem;font-weight:500;letter-spacing:2px;font-family:'DM Sans',sans-serif;}
+.nav-logo-sub{color:var(--ouro);font-size:0.65rem;font-weight:500;letter-spacing:1.5px;font-family:'DM Sans',sans-serif;}
 .nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
 .nav-links a{color:var(--cinza2);text-decoration:none;font-size:0.84rem;font-weight:500;transition:color 0.2s;}
 .nav-links a:hover{color:var(--ouro);}
@@ -79,7 +79,6 @@ nav.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.5);}
 
 .hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 420px;gap:5rem;align-items:center;position:relative;z-index:1;}
 
-/* prova social topo */
 .hero-social-proof{
   display:inline-flex;align-items:center;gap:0.75rem;
   background:rgba(201,168,76,0.07);border:1px solid var(--ouro-linha);
@@ -91,10 +90,9 @@ nav.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.5);}
 .hero-proof-txt{font-size:0.75rem;color:var(--cinza2);font-weight:500;}
 .hero-proof-dot{width:4px;height:4px;border-radius:50%;background:var(--ouro);opacity:0.5;}
 
-/* headline */
 h1.titulo-hero{
   font-family:'Barlow Condensed',sans-serif;
-  font-size:clamp(3rem,6vw,5.5rem);
+  font-size:clamp(2.8rem,5.5vw,5rem);
   font-weight:900;line-height:1;
   letter-spacing:-0.5px;
   color:var(--branco);
@@ -114,29 +112,26 @@ h1.titulo-hero{
 
 .hero-sub{
   font-size:1.05rem;color:var(--cinza2);line-height:1.75;
-  max-width:500px;margin-bottom:2rem;
+  max-width:540px;margin-bottom:2rem;
   font-weight:300;animation:fadeUp 0.5s ease 0.2s both;
 }
 .hero-sub strong{color:var(--branco);font-weight:600;}
 
-/* mini stats */
 .hero-stats{
   display:flex;gap:0;margin-bottom:2.2rem;
   animation:fadeUp 0.5s ease 0.3s both;
 }
-.hero-stats:last-child{border-right:1px solid var(--ouro-linha);border-radius:0 6px 6px 0;}
 .hero-stat{
-  padding:0.9rem 1.5rem;
+  padding:0.9rem 1.2rem;
   border:1px solid var(--ouro-linha);
   border-right:none;
   background:rgba(201,168,76,0.04);
 }
 .hero-stat:first-child{border-radius:6px 0 0 6px;}
 .hero-stat:last-child{border-right:1px solid var(--ouro-linha);border-radius:0 6px 6px 0;}
-.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:1.9rem;font-weight:900;color:var(--ouro);line-height:1;}
-.stat-label{font-size:0.68rem;font-weight:600;color:var(--cinza);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:1.7rem;font-weight:900;color:var(--ouro);line-height:1;}
+.stat-label{font-size:0.65rem;font-weight:600;color:var(--cinza);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
 
-/* CTAs */
 .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.5s ease 0.4s both;}
 .cta-wpp{
   display:inline-flex;align-items:center;gap:0.65rem;
@@ -156,7 +151,7 @@ h1.titulo-hero{
 }
 .cta-ghost:hover{border-color:var(--ouro);color:var(--ouro);}
 
-/* hero direita — card de confiança */
+/* hero direita */
 .hero-card{
   background:rgba(13,34,85,0.6);
   border:1px solid var(--ouro-linha);
@@ -183,7 +178,7 @@ h1.titulo-hero{
   text-align:center;color:var(--branco);
   margin-bottom:0.2rem;
 }
-.hero-card-cargo{text-align:center;font-size:0.78rem;color:var(--ouro);letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:1.5rem;}
+.hero-card-cargo{text-align:center;font-size:0.75rem;color:var(--ouro);letter-spacing:1.5px;text-transform:uppercase;font-weight:600;margin-bottom:1.5rem;}
 .hero-card-items{display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.5rem;}
 .hero-card-item{
   display:flex;align-items:center;gap:0.75rem;
@@ -231,8 +226,17 @@ h2.sec-titulo{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,4vw
 .dor-item:last-child{margin-bottom:0;}
 .dor-ico{flex-shrink:0;font-size:1rem;margin-top:1px;}
 
+/* ── ABORDAGEM INCLUSIVA / ESPECIAIS ── */
+#inclusao { background: var(--azul); }
+.inc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 3rem; }
+.inc-card { background: rgba(201,168,76,0.03); border: 1px solid var(--ouro-linha); padding: 2.5rem; border-radius: 12px; transition: transform 0.3s; }
+.inc-card:hover { transform: translateY(-4px); background: rgba(201,168,76,0.05); }
+.inc-ico { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+.inc-tit { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--ouro); margin-bottom: 0.8rem; }
+.inc-desc { color: var(--cinza2); font-size: 0.95rem; line-height: 1.7; font-weight: 300; }
+
 /* ── SOBRE ── */
-#sobre{background:var(--azul);}
+#sobre{background:var(--azul2);}
 .sobre-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:400px 1fr;gap:5rem;align-items:start;}
 .sobre-foto-box{position:relative;}
 .sobre-foto{width:100%;height:480px;border-radius:8px;object-fit:cover;object-position:top;display:block;border:1px solid var(--ouro-linha);}
@@ -248,7 +252,7 @@ h2.sec-titulo{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,4vw
 .credencial{background:rgba(201,168,76,0.07);border:1px solid var(--ouro-linha);border-radius:6px;padding:0.6rem 1rem;font-size:0.78rem;font-weight:600;color:var(--ouro);}
 
 /* ── SERVIÇOS ── */
-#servicos{background:var(--azul2);}
+#servicos{background:var(--azul);}
 .servicos-grid{max-width:1200px;margin:3rem auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linha);border:1px solid var(--linha);border-radius:8px;overflow:hidden;}
 .srv{background:var(--azul2);padding:2.2rem 1.8rem;position:relative;transition:background 0.3s;overflow:hidden;}
 .srv::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ouro),var(--ouro2));transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
@@ -260,9 +264,9 @@ h2.sec-titulo{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,4vw
 .srv-desc{color:var(--cinza);font-size:0.86rem;line-height:1.65;font-weight:300;}
 
 /* ── DEPOIMENTOS ── */
-#depoimentos{background:var(--azul);}
+#depoimentos{background:var(--azul2);}
 .dep-grid{max-width:1200px;margin:3rem auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-.dep-card{background:var(--azul2);border:1px solid var(--linha);border-radius:8px;padding:1.8rem;position:relative;transition:border-color 0.3s,transform 0.3s;}
+.dep-card{background:var(--azul);border:1px solid var(--linha);border-radius:8px;padding:1.8rem;position:relative;transition:border-color 0.3s,transform 0.3s;}
 .dep-card:hover{border-color:var(--ouro-linha);transform:translateY(-4px);}
 .dep-aspas{font-family:'DM Serif Display',serif;font-style:italic;font-size:4rem;line-height:1;color:var(--ouro);opacity:0.15;position:absolute;top:0.8rem;left:1.3rem;}
 .dep-txt{font-style:italic;font-size:0.9rem;color:var(--cinza2);line-height:1.75;margin-bottom:1.3rem;position:relative;z-index:1;font-weight:300;}
@@ -392,6 +396,7 @@ footer{background:var(--azul);border-top:1px solid var(--ouro-linha);padding:2re
   .sobre-inner{grid-template-columns:1fr;gap:3rem;}
   .sobre-foto-box{display:none;}
   .dif-grid{grid-template-columns:1fr 1fr;}
+  .inc-grid{grid-template-columns:1fr;}
   .area-inner{grid-template-columns:1fr;}
   .mapa-wrap{height:340px;}
 }
@@ -419,22 +424,24 @@ footer{background:var(--azul);border-top:1px solid var(--ouro-linha);padding:2re
 </head>
 <body>
 
+<!-- NAV -->
 <nav id="mainNav">
   <a href="#" class="nav-logo">
     <img src="logo.jpg" alt="Cléssio Ferreira" onerror="this.style.display='none'">
     <div>
       <div class="nav-logo-txt">CLÉSSIO FERREIRA</div>
-      <div class="nav-logo-sub">Instrutor · Cat. A</div>
+      <div class="nav-logo-sub">Instrutor de Trânsito · Cat. A e B</div>
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#inclusao">Atendimento Inclusivo</a></li>
+    <li><a href="#sobre">O Método</a></li>
     <li><a href="#servicos">Serviços</a></li>
     <li><a href="#depoimentos">Depoimentos</a></li>
     <li><a href="#area">Onde Atendo</a></li>
     <li><a href="#faq">Dúvidas</a></li>
     <li>
-      <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Vi%20seu%20site%20e%20quero%20saber%20sobre%20as%20aulas." target="_blank" class="nav-cta-btn">
+      <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Vi%20seu%20site%20e%20quero%20saber%20sobre%20as%20aulas%20de%20carro%20e%20moto." target="_blank" class="nav-cta-btn">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
         Falar Agora
       </a>
@@ -443,7 +450,8 @@ footer{background:var(--azul);border-top:1px solid var(--ouro-linha);padding:2re
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#sobre" onclick="closeMenu()">Sobre</a>
+  <a href="#inclusao" onclick="closeMenu()">Atendimento Inclusivo</a>
+  <a href="#sobre" onclick="closeMenu()">O Método</a>
   <a href="#servicos" onclick="closeMenu()">Serviços</a>
   <a href="#depoimentos" onclick="closeMenu()">Depoimentos</a>
   <a href="#area" onclick="closeMenu()">Onde Atendo</a>
@@ -451,6 +459,7 @@ footer{background:var(--azul);border-top:1px solid var(--ouro-linha);padding:2re
   <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!" target="_blank" onclick="closeMenu()">💬 Falar no WhatsApp</a>
 </div>
 
+<!-- HERO -->
 <section id="hero">
   <div class="hero-grid-bg"></div>
   <div class="hero-orb1"></div>
@@ -460,38 +469,42 @@ footer{background:var(--azul);border-top:1px solid var(--ouro-linha);padding:2re
       <div class="hero-social-proof">
         <span class="hero-stars">★★★★★</span>
         <span class="hero-proof-dot"></span>
-        <span class="hero-proof-txt">+200 aprovados na região de Campinas</span>
+        <span class="hero-proof-txt">Especialista em Direção Inclusiva e Defensiva</span>
       </div>
       <h1 class="titulo-hero">
-        <span>Tire a Cat. A</span>
-        <span class="linha-ouro">na primeira</span>
-        <span class="linha-outline">tentativa.</span>
+        <span>Conquiste a Cat. A e B</span>
+        <span class="linha-ouro">com quem ensina</span>
+        <span class="linha-outline">de verdade.</span>
       </h1>
       <p class="hero-sub">
-        Cansou de autoescola lotada onde você é só um número?<br>
-        Com o Cléssio, as aulas são <strong>só suas</strong> — método personalizado,
-        no seu ritmo, com 23 anos de experiência aprovando alunos no DETRAN de Campinas.
+        Focado em quem precisa de atenção real: <strong>iniciantes, idosos e neurodivergentes</strong>. 
+        Aqui você domina o trânsito com segurança. No carro, jogamos no nível hard: treinamento em 
+        <strong>carro analógico manual</strong>, porque quem aprende a mecânica real pilota qualquer automático de olhos fechados.
       </p>
       <div class="hero-stats">
         <div class="hero-stat">
           <div class="stat-num">23+</div>
-          <div class="stat-label">Anos instruindo</div>
+          <div class="stat-label">Anos de Prática</div>
         </div>
         <div class="hero-stat">
-          <div class="stat-num">Cat.A</div>
-          <div class="stat-label">Habilitação moto</div>
+          <div class="stat-num">A e B</div>
+          <div class="stat-label">Carro & Moto</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-num">Raiz</div>
+          <div class="stat-label">Carro Analógico</div>
         </div>
         <div class="hero-stat">
           <div class="stat-num">100%</div>
-          <div class="stat-label">Aula individual</div>
+          <div class="stat-label">Acolhedor</div>
         </div>
       </div>
       <div class="hero-ctas">
-        <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Vi%20seu%20site%20e%20quero%20saber%20sobre%20as%20aulas%20de%20moto." target="_blank" class="cta-wpp">
+        <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Vi%20seu%20site%20e%20quero%20saber%20sobre%20as%20aulas%20particulares." target="_blank" class="cta-wpp">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
-          Quero minha Cat. A agora
+          Quero agendar minhas aulas
         </a>
-        <a href="#servicos" class="cta-ghost">Conhecer os serviços →</a>
+        <a href="#servicos" class="cta-ghost">Ver programas de treino →</a>
       </div>
     </div>
     <div>
@@ -499,17 +512,17 @@ footer{background:var(--azul);border-top:1px solid var(--ouro-linha);padding:2re
         <img src="logo.jpg" alt="Cléssio Ferreira" class="hero-card-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="hero-card-logo-ph" style="display:none">CF</div>
         <div class="hero-card-nome">Cléssio Ferreira</div>
-        <div class="hero-card-cargo">Instrutor Autônomo · Cat. A</div>
+        <div class="hero-card-cargo">Instrutor Credenciado · Especialista</div>
         <div class="hero-card-items">
-          <div class="hero-card-item"><span class="hci-dot"></span>23 anos formando motociclistas</div>
-          <div class="hero-card-item"><span class="hci-dot"></span>Aulas 100% individuais e personalizadas</div>
-          <div class="hero-card-item"><span class="hci-dot"></span>Preparação completa: técnico + prático</div>
-          <div class="hero-card-item"><span class="hci-dot"></span>Atende toda a Região de Campinas</div>
-          <div class="hero-card-item"><span class="hci-dot"></span>Horários flexíveis, incluindo fins de semana</div>
+          <div class="hero-card-item"><span class="hci-dot"></span>Habilitação completa: Categorias A e B</div>
+          <div class="hero-card-item"><span class="hci-dot"></span>Didática para Neurodivergentes (TDAH, Autismo)</div>
+          <div class="hero-card-item"><span class="hci-dot"></span>Paciência e ritmo sob medida para Idosos</div>
+          <div class="hero-card-item"><span class="hci-dot"></span>Treino técnico em Veículo Analógico Manual</div>
+          <div class="hero-card-item"><span class="hci-dot"></span>Flexibilidade total na Grande Campinas</div>
         </div>
-        <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Quero%20informações%20sobre%20as%20aulas%20de%20moto." target="_blank" class="hero-card-cta">
+        <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Gostaria%20de%20entender%20como%20funcionam%20as%20aulas%20particulares." target="_blank" class="hero-card-cta">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
-          Falar agora no WhatsApp
+          Chamar no WhatsApp
         </a>
         <div class="hero-card-nota">📍 Campinas e Região Metropolitana</div>
       </div>
@@ -517,37 +530,69 @@ footer{background:var(--azul);border-top:1px solid var(--ouro-linha);padding:2re
   </div>
 </section>
 
+<!-- BARRA URGÊNCIA -->
 <div class="barra-urgencia">
-  🏍️ Vagas limitadas por semana — atendimento 100% individual &nbsp;<span>| Resposta em até 1 hora no WhatsApp</span>
+  🚗 Atendimento especializado e humanizado individualizado &nbsp;<span>| Foco na superação de traumas e bloqueios</span>
 </div>
 
-<section id="dor">
+<!-- ABORDAGEM INCLUSIVA / ESPECIAIS -->
+<section id="inclusao">
   <div class="container">
     <div class="reveal" style="text-align:center;">
-      <span class="sec-label">Você se identifica?</span>
-      <h2 class="sec-titulo" style="text-align:center;">Autoescola não funcionou.<br>Com o Cléssio vai ser diferente.</h2>
+      <span class="sec-label">Didática Diferenciada</span>
+      <h2 class="sec-titulo" style="text-align:center;">Direção com Acolhimento e Respeito</h2>
+      <p class="sec-sub" style="margin: 0 auto; text-align:center;">O trânsito é para todos. Desenvolvi um método técnico focado na individualidade de perfis que exigem paciência e processos adaptados.</p>
     </div>
-    <div class="dor-grid reveal">
-      <div class="dor-col">
-        <div class="dor-col-label red"><span class="ico">❌</span> O que você vive na autoescola</div>
-        <div class="dor-item"><span class="dor-ico">😤</span><span>Turmas lotadas, instructor que mal te conhece</span></div>
-        <div class="dor-item"><span class="dor-ico">⏰</span><span>Horários rígidos que não encaixam na sua rotina</span></div>
-        <div class="dor-item"><span class="dor-ico">😰</span><span>Pressão e ansiedade — sente que vai travar no exame</span></div>
-        <div class="dor-item"><span class="dor-ico">💸</span><span>Paga por aulas genéricas que não corrigem seus erros específicos</span></div>
-        <div class="dor-item"><span class="dor-ico">😞</span><span>Reprovar dói — e na autoescola ninguém explica o porquê direito</span></div>
+    <div class="inc-grid reveal">
+      <div class="inc-card">
+        <span class="inc-ico">🧠</span>
+        <h3 class="inc-tit">Alunos Neurodivergentes</h3>
+        <p class="inc-desc">
+          Abordagem estruturada para pessoas com TDAH, Autismo (TEA) e alta ansiedade. 
+          Sem estímulos confusos, com instruções cirúrgicas, previsíveis e focadas no gerenciamento da 
+          sobrecarga sensorial. Sem pressões desnecessárias.
+        </p>
       </div>
-      <div class="dor-col sol">
-        <div class="dor-col-label green"><span class="ico">✅</span> O que você tem com o Cléssio</div>
-        <div class="dor-item"><span class="dor-ico">🎯</span><span>Aula só sua — 100% do tempo focado em você</span></div>
-        <div class="dor-item"><span class="dor-ico">📅</span><span>Horário que cabe na sua vida, incluindo fins de semana</span></div>
-        <div class="dor-item"><span class="dor-ico">🧡</span><span>Ambiente seguro, sem pressão — aprende no seu ritmo</span></div>
-        <div class="dor-item"><span class="dor-ico">🔎</span><span>Diagnóstico dos seus erros e treinamento cirúrgico em cima deles</span></div>
-        <div class="dor-item"><span class="dor-ico">🏆</span><span>23 anos conhecendo os percursos e as exigências do DETRAN de Campinas</span></div>
+      <div class="inc-card">
+        <span class="inc-ico">👵👴</span>
+        <h3 class="inc-tit">Melhor Idade / Idosos</h3>
+        <p class="inc-desc">
+          Aprender a dirigir ou retomar a prática após os 60 anos exige um ritmo de respeito. 
+          Foco na construção gradual dos reflexos, segurança preventiva e total paciência para explicar 
+          cada comando mecânico quantas vezes for preciso.
+        </p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- DOR vs SOLUÇÃO -->
+<section id="dor">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <span class="sec-label">Chega de frustração</span>
+      <h2 class="sec-titulo" style="text-align:center;">A pedagogia tradicional falhou?<br>Veja como trabalhamos aqui:</h2>
+    </div>
+    <div class="dor-grid reveal">
+      <div class="dor-col">
+        <div class="dor-col-label red"><span class="ico">❌</span> O sistema comum de autoescola</div>
+        <div class="dor-item"><span class="dor-ico">😤</span><span>Instrutores impacientes que gritam ou demonstram irritação.</span></div>
+        <div class="dor-item"><span class="dor-ico">🚗</span><span>Carros modernos cheios de assistentes que mascaram seus erros de embreagem.</span></div>
+        <div class="dor-item"><span class="dor-ico">😰</span><span>Aulas engessadas que aumentam a crise de pânico e o medo do trânsito.</span></div>
+        <div class="dor-item"><span class="dor-ico">💸</span><span>Reprovações em massa porque ninguém ensina a raiz da sensibilidade mecânica.</span></div>
+      </div>
+      <div class="dor-col sol">
+        <div class="dor-col-label green"><span class="ico">✅</span> A Mentoria do Cléssio</div>
+        <div class="dor-item"><span class="dor-ico">🎯</span><span>Ambiente 100% seguro emocionalmente. Zero broncas, foco na evolução.</span></div>
+        <div class="dor-item"><span class="dor-ico">⚙️</span><span>Treino com o Carro Analógico. Sinta o motor, domine o ponto, domine o mundo.</span></div>
+        <div class="dor-item"><span class="dor-ico">🧡</span><span>Especialista em fobias e neurodiversidade. Adapto a aula ao seu cérebro.</span></div>
+        <div class="dor-item"><span class="dor-ico">🏆</span><span>Se você pilota o clássico manual, o carro automático moderno vira brinquedo.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
 <section id="sobre">
   <div class="sobre-inner container">
     <div class="sobre-foto-box reveal">
@@ -557,23 +602,24 @@ footer{background:var(--azul);border-top:1px solid var(--ouro-linha);padding:2re
       <div class="sobre-corner2"></div>
     </div>
     <div class="sobre-content reveal">
-      <span class="sec-label">Quem é o Cléssio</span>
-      <h2 class="sec-titulo">Instrutor autônomo.<br>23 anos, centenas<br>de aprovados.</h2>
+      <span class="sec-label">A Filosofia do Instrutor</span>
+      <h2 class="sec-titulo">Por que aprender<br>no carro analógico<br>faz a diferença?</h2>
       <p style="color:var(--cinza);font-size:0.95rem;line-height:1.8;font-weight:300;margin-bottom:0.5rem;">
-        Não sou autoescola. Sou instrutor autônomo — e isso faz toda a diferença. Cada aluno recebe atenção total, método adaptado e o tempo que precisar para chegar confiante ao exame.
+        Carros muito novos facilitam tudo artificialmente eletrônica afora, mas não ensinam o aluno a "sentir" o veículo. 
+        Eu uso um veículo antigo, mecânico, puramente **analógico**. Isso é uma vantagem pedagógica imensa.
       </p>
       <ul class="sobre-lista">
-        <li><div class="sobre-check">✓</div><span>Conheço os percursos e os critérios do DETRAN de Campinas melhor do que ninguém — são 23 anos acompanhando cada atualização.</span></li>
-        <li><div class="sobre-check">✓</div><span>Preparo completo: técnico (baliza, slalom, percurso lento) e prático (condução no trânsito real).</span></li>
-        <li><div class="sobre-check">✓</div><span>Para quem está começando do zero ou já tentou e reprovou — adapto o método para cada realidade.</span></li>
-        <li><div class="sobre-check">✓</div><span>Nunca grito, nunca pressiono. Aprendo como você aprende — e aí começa a transformação.</span></li>
+        <li><div class="sobre-check">✓</div><span><strong>Memória Muscular Real:</strong> No carro manual analógico, você aprende o controle exato do ponto da embreagem sem ajuda de sensores.</span></li>
+        <li><div class="sobre-check">✓</div><span><strong>Evolução Automática:</strong> Quem aprende a dominar a engrenagem pura do clássico, conduz qualquer modelo automático atual com total facilidade e sem esforço.</span></li>
+        <li><div class="sobre-check">✓</div><span><strong>Eliminação de Vícios:</strong> Você entende o comportamento físico do motor, reduzindo drasticamente o risco de deixar o carro "morrer" em subidas pesadas.</span></li>
+        <li><div class="sobre-check">✓</div><span><strong>Inclusão Sem Trauma:</strong> Ideal para idosos que preferem comandos clássicos estruturados e neurodivergentes que respondem melhor à lógica puramente mecânica.</span></li>
       </ul>
       <div class="credencial-row">
-        <div class="credencial">🏆 Instrutor Credenciado</div>
-        <div class="credencial">🏍️ Categoria A</div>
-        <div class="credencial">📍 Campinas e Região</div>
+        <div class="credencial">🏆 23 Anos de Didática</div>
+        <div class="credencial">🚗 Cat. A e B Concluídas</div>
+        <div class="credencial">⚙️ Especialista em Câmbio Manual</div>
       </div>
-      <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Quero%20agendar%20uma%20aula." target="_blank" class="cta-wpp" style="display:inline-flex;margin-top:2rem;">
+      <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Quero%20entender%20o%20treinamento%20no%20carro%20analógico." target="_blank" class="cta-wpp" style="display:inline-flex;margin-top:2rem;">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
         Agendar aula experimental
       </a>
@@ -581,70 +627,69 @@ footer{background:var(--azul);border-top:1px solid var(--ouro-linha);padding:2re
   </div>
 </section>
 
+<!-- SERVIÇOS -->
 <section id="servicos">
   <div class="container">
     <div class="reveal">
-      <span class="sec-label">O que ofereço</span>
-      <h2 class="sec-titulo">Serviços</h2>
-      <p class="sec-sub">Do primeiro giro ao dia do exame — tenho um programa para cada etapa da sua jornada.</p>
+      <span class="sec-label">Programas de Treinamento</span>
+      <h2 class="sec-titulo">Portfólio de Serviços</h2>
+      <p class="sec-sub">Do controle inicial da ansiedade à aprovação técnica definitiva.</p>
     </div>
   </div>
   <div class="servicos-grid container reveal" style="margin-top:3rem;">
-    <div class="srv"><div class="srv-num">01</div><span class="srv-ico">🏍️</span><div class="srv-nome">Aulas Práticas — Do Zero</div><p class="srv-desc">Nunca andou de moto? Começamos do básico: familiarização, equilíbrio, partida, marcha, frenagem. Sem pressa, sem pular etapas.</p></div>
-    <div class="srv"><div class="srv-num">02</div><span class="srv-ico">📋</span><div class="srv-nome">Preparação Exame Técnico</div><p class="srv-desc">Treinamento intensivo nas manobras cobradas pelo DETRAN: baliza, percurso lento, slalom. Você repete até dominar — sem pressão.</p></div>
-    <div class="srv"><div class="srv-num">03</div><span class="srv-ico">🛣️</span><div class="srv-nome">Preparação Exame Prático</div><p class="srv-desc">Simulado no percurso real dos examinadores de Campinas. Você aprende exatamente o que é avaliado e elimina os erros antes do dia D.</p></div>
-    <div class="srv"><div class="srv-num">04</div><span class="srv-ico">🎯</span><div class="srv-nome">Diagnóstico Pós-Reprovação</div><p class="srv-desc">Reprovou? Traz o relatório do examinador. Identificamos o que falhou e trabalhamos cirurgicamente nesses pontos. Nada de recomeçar do zero.</p></div>
-    <div class="srv"><div class="srv-num">05</div><span class="srv-ico">🔄</span><div class="srv-nome">Reciclagem e Retomada</div><p class="srv-desc">Tirou a habilitação mas perdeu a prática? Programa de retomada gradual para você voltar a conduzir com segurança e confiança total.</p></div>
-    <div class="srv"><div class="srv-num">06</div><span class="srv-ico">📍</span><div class="srv-nome">Aulas na Sua Região</div><p class="srv-desc">Atendo Campinas e toda a Região Metropolitana. Posso ir até você ou você vem até mim. Horários livres, incluindo sábado e domingo.</p></div>
+    <div class="srv"><div class="srv-num">01</div><span class="srv-ico">🚗</span><div class="srv-nome">Prática Categoria B (Manual)</div><p class="srv-desc">Foco na sensibilidade do veículo clássico. Controle de pedais, tempo de marcha e desenvolvimento de visão periférica defensiva.</p></div>
+    <div class="srv"><div class="srv-num">02</div><span class="srv-ico">🏍️</span><div class="srv-nome">Prática Categoria A (Moto)</div><p class="srv-desc">Equilíbrio progressivo, circuito técnico (slalom, rampa, cones) e controle fino de aceleração. Do absoluto zero à excelência.</p></div>
+    <div class="srv"><div class="srv-num">03</div><span class="srv-ico">🧠</span><div class="srv-nome">Acompanhamento Adaptado</div><p class="srv-desc">Aulas focadas em neurodivergentes e idosos. Comunicação sem ambiguidades, rotinas fixas e paciência total no desenvolvimento.</p></div>
+    <div class="srv"><div class="srv-num">04</div><span class="srv-ico">🛡️</span><div class="srv-nome">Superação de Fobias / Medo</div><p class="srv-desc">Tratamento prático para habilitados que travam ao volante. Retomada em locais tranquilos até alcançar autonomia em vias expressas.</p></div>
+    <div class="srv"><div class="srv-num">05</div><span class="srv-ico">📋</span><div class="srv-nome">Simulado Prático DETRAN</div><p class="srv-desc">Treino em percursos reais mapeados em Campinas. Correção cirúrgica dos pontos específicos que os examinadores pontuam.</p></div>
+    <div class="srv"><div class="srv-num">06</div><span class="srv-ico">🔄</span><div class="srv-nome">Transição Manual p/ Automático</div><p class="srv-desc">Dicas e ajustes para quem dominou o carro analógico e quer migrar para as facilidades eletrônicas com segurança.</p></div>
   </div>
 </section>
 
+<!-- DIFERENCIAIS -->
 <section id="diferenciais">
   <div class="container">
     <div class="reveal" style="text-align:center;">
-      <span class="sec-label">Por que o Cléssio</span>
-      <h2 class="sec-titulo" style="text-align:center;">O que faz a diferença<br>na hora de passar.</h2>
-      <p class="sec-sub" style="max-width:520px;margin:0 auto;text-align:center;">Não é sorte. É método, experiência e uma atenção que autoescola não consegue dar.</p>
+      <span class="sec-label">Diferenciais de Mercado</span>
+      <h2 class="sec-titulo" style="text-align:center;">Por que a mentoria do Cléssio<br>é a mais recomendada?</h2>
     </div>
     <div class="dif-grid">
-      <div class="dif-card reveal"><span class="dif-ico">🎓</span><div class="dif-titulo">23 Anos de Experiência Real</div><p class="dif-desc">Duas décadas acompanhando os percursos, as mudanças de critério e as pegadas dos examinadores do DETRAN de Campinas. Isso não se improvisa.</p></div>
-      <div class="dif-card reveal"><span class="dif-ico">👤</span><div class="dif-titulo">Aula 100% Individual</div><p class="dif-desc">Você não divide a aula com ninguém. Toda atenção é sua — correções em tempo real, ritmo adaptado, evolução visível a cada encontro.</p></div>
-      <div class="dif-card reveal"><span class="dif-ico">🧡</span><div class="dif-titulo">Ambiente Sem Pressão</div><p class="dif-desc">Nunca grito, nunca pressiono. Muitos alunos chegam com medo ou frustração de tentativas anteriores — e saem com confiança real no guidão.</p></div>
-      <div class="dif-card reveal"><span class="dif-ico">📅</span><div class="dif-titulo">Horário Que Cabe na Sua Vida</div><p class="dif-desc">Flexibilidade total. Manhã, tarde, noite, fim de semana. Você escolhe o que funciona — eu me adapto à sua rotina.</p></div>
-      <div class="dif-card reveal"><span class="dif-ico">🔍</span><div class="dif-titulo">Foco Cirúrgico nos Erros</div><p class="dif-desc">Não existe treino genérico aqui. Identifico o que especificamente está travando a sua aprovação e trabalhamos exatamente nisso — sem desperdício de tempo.</p></div>
-      <div class="dif-card reveal"><span class="dif-ico">📞</span><div class="dif-titulo">Suporte Direto no WhatsApp</div><p class="dif-desc">Tem dúvida antes ou depois da aula? Me chama. Não tem secretária nem fila de espera — você fala diretamente comigo.</p></div>
+      <div class="dif-card reveal"><span class="dif-ico">🎓</span><div class="dif-titulo">23 Anos de Prática de Trânsito</div><p class="dif-desc">Mapeamento completo de todas as alterações de exigências das bancas avaliadoras de Campinas e região.</p></div>
+      <div class="dif-card reveal"><span class="dif-ico">👤</span><div class="dif-titulo">Atenção Individualizada Estrita</div><p class="dif-desc">Sem revezamento de alunos. Cem por cento do tempo útil da aula voltado para o seu progresso mecânico e mental.</p></div>
+      <div class="dif-card reveal"><span class="dif-ico">🧡</span><div class="dif-titulo">Comunicação e Respeito</div><p class="dif-desc">Ambiente acolhedor livre de pressões. Excelente índice de superação de traumas em condutores de todas as idades.</p></div>
+      <div class="dif-card reveal"><span class="dif-ico">📅</span><div class="dif-titulo">Agendas Customizadas</div><p class="dif-desc">Opções de horários flexíveis que respeitam os momentos de menor fluxo para quem está iniciando ou possui ansiedade extrema.</p></div>
+      <div class="dif-card reveal"><span class="dif-ico">⚙️</span><div class="dif-titulo">O Poder do Analógico</div><p class="dif-desc">A pedagogia do carro clássico manual desenvolve no aluno uma segurança estrutural impossível de ser replicada em sistemas cheios de automação.</p></div>
+      <div class="dif-card reveal"><span class="dif-ico">📞</span><div class="dif-titulo">Canal Direto no WhatsApp</div><p class="dif-desc">Esclarecimento de dúvidas e ajustes operacionais feitos diretamente com o instrutor de forma direta e sem filas.</p></div>
     </div>
   </div>
 </section>
 
+<!-- DEPOIMENTOS -->
 <section id="depoimentos">
   <div class="container">
     <div class="reveal" style="text-align:center;">
-      <span class="sec-label">Quem já passou</span>
-      <h2 class="sec-titulo" style="text-align:center;">Resultados reais de<br>alunos reais.</h2>
-      <p class="sec-sub" style="text-align:center;margin:0 auto;">Cada história aqui foi de alguém que duvidou que conseguia — e conseguiu.</p>
+      <span class="sec-label">Histórias de Sucesso</span>
+      <h2 class="sec-titulo" style="text-align:center;">Superação e Resultados<br>de Condutores Reais.</h2>
     </div>
     <div class="dep-grid">
-      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-txt">Tinha reprovado duas vezes na autoescola. O Cléssio identificou exatamente o que eu errava na baliza e em 3 aulas já estava dominando. Passei na terceira tentativa. Método completamente diferente.</p><div class="dep-autor"><div class="dep-av">RF</div><div><div class="dep-nome">Rafael F.</div><div class="dep-info">26 anos — Sumaré</div><div class="dep-stars">★★★★★</div></div></div></div>
-      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-txt">Nunca tinha andado de moto na vida. Estava com muito medo. O Cléssio foi do absoluto zero comigo — sem pular uma etapa. Passei na primeira tentativa e hoje uso a moto todo dia no trabalho.</p><div class="dep-autor"><div class="dep-av">MS</div><div><div class="dep-nome">Marcos S.</div><div class="dep-info">38 anos — Indaiatuba</div><div class="dep-stars">★★★★★</div></div></div></div>
-      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-txt">Comecei com 45 anos achando que era tarde demais. A paciência e a didática do Cléssio me mostraram que não tem limite. Passei no exame e me sinto uma motociclista de verdade!</p><div class="dep-autor"><div class="dep-av">CR</div><div><div class="dep-nome">Cristina R.</div><div class="dep-info">45 anos — Campinas</div><div class="dep-stars">★★★★★</div></div></div></div>
-      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-txt">Precisava da Cat. A para trabalho e não tinha tempo a perder. Em poucas aulas com foco total já me sentia seguro no percurso. Passei na primeira. Recomendo sem hesitar!</p><div class="dep-autor"><div class="dep-av">LP</div><div><div class="dep-nome">Lucas P.</div><div class="dep-info">29 anos — Valinhos</div><div class="dep-stars">★★★★★</div></div></div></div>
-      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-txt">Voltei a andar de moto depois de 10 anos parada. Tinha muito receio. O Cléssio respeitou completamente o meu ritmo — sem pressa, sem pressão. Recuperei a confiança depressa!</p><div class="dep-autor"><div class="dep-av">AM</div><div><div class="dep-nome">Ana Paula M.</div><div class="dep-info">41 anos — Hortolândia</div><div class="dep-stars">★★★★★</div></div></div></div>
-      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-txt">60 anos e achei que não conseguiria mais. O Cléssio me mostrou que idade não é obstáculo quando o instrutor sabe o que faz. Tirei a Cat. A e hoje uso a moto para tudo!</p><div class="dep-autor"><div class="dep-av">JA</div><div><div class="dep-nome">José A.</div><div class="dep-info">60 anos — Campinas</div><div class="dep-stars">★★★★★</div></div></div></div>
+      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-txt">Por causa do meu TDAH, o barulho e a pressão da autoescola me faziam travar. O Cléssio usou uma didática super direta, sem enrolação. Aprender no carro analógico me deu o controle total das pernas e da atenção. Passei direto!</p><div class="dep-autor"><div class="dep-av">RF</div><div><div class="dep-nome">Rafael F.</div><div class="dep-info">26 anos — Sumaré</div><div class="dep-stars">★★★★★</div></div></div></div>
+      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-txt">Tinha pavor de carro manual, achava que ia deixar morrer em toda subida. O Cléssio me ensinou a ler o motor naquele carro clássico dele. Hoje peguei um automático da empresa e parece brincadeira de criança. Método sensacional.</p><div class="dep-autor"><div class="dep-av">MS</div><div><div class="dep-nome">Marcos S.</div><div class="dep-info">38 anos — Indaiatuba</div><div class="dep-stars">★★★★★</div></div></div></div>
+      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-txt">Voltei a tentar dirigir aos 67 anos. Todo mundo me tratava com pressa. O Cléssio foi de uma paciência de ouro. Respeitou meu tempo, me passou segurança e hoje vou ao supermercado sozinha de carro.</p><div class="dep-autor"><div class="dep-av">CR</div><div><div class="dep-nome">Cristina R.</div><div class="dep-info">67 anos — Campinas</div><div class="dep-stars">★★★★★</div></div></div></div>
     </div>
   </div>
 </section>
 
+<!-- ÁREA DE ATENDIMENTO -->
 <section id="area">
   <div class="container">
     <div class="area-head reveal">
-      <span class="sec-label">Onde atendo</span>
+      <span class="sec-label">Abrangência Geográfica</span>
       <h2 class="sec-titulo">Região Metropolitana<br>de Campinas</h2>
-      <p class="sec-sub">Atendo as principais cidades com total flexibilidade de horário.</p>
+      <p class="sec-sub">Atendimento estendido com flexibilidade operacional planejada.</p>
     </div>
     <div class="area-inner">
       <div class="reveal">
-        <p style="color:var(--cinza);line-height:1.8;font-weight:300;margin-bottom:1.5rem;">Levo as aulas até você ou você vem até mim — o que for melhor para a sua rotina.</p>
+        <p style="color:var(--cinza);line-height:1.8;font-weight:300;margin-bottom:1.5rem;">As rotas são planejadas para iniciar em locais de baixa complexidade, evoluindo conforme a segurança do aluno.</p>
         <div class="cidades-wrap">
           <div class="cidade-pill">Campinas</div>
           <div class="cidade-pill">Sumaré</div>
@@ -657,10 +702,9 @@ footer{background:var(--azul);border-top:1px solid var(--ouro-linha);padding:2re
           <div class="cidade-pill">Santa Bárbara</div>
           <div class="cidade-pill">Monte Mor</div>
         </div>
-        <p style="color:var(--cinza);font-size:0.8rem;margin-top:1rem;">Não viu sua cidade? Provavelmente atendo — é só perguntar.</p>
-        <a href="https://wa.me/5519993264055?text=Olá!%20Quero%20saber%20se%20você%20atende%20na%20minha%20cidade." target="_blank" class="cta-wpp" style="display:inline-flex;margin-top:1.5rem;font-size:0.9rem;padding:0.85rem 1.6rem;">
+        <a href="https://wa.me/5519993264055?text=Olá!%20Quero%20saber%20se%20você%20atende%20no%20meu%20bairro." target="_blank" class="cta-wpp" style="display:inline-flex;margin-top:1.5rem;font-size:0.9rem;padding:0.85rem 1.6rem;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
-          Verificar minha cidade
+          Consultar Viabilidade de Bairro
         </a>
       </div>
       <div class="reveal">
@@ -672,122 +716,106 @@ footer{background:var(--azul);border-top:1px solid var(--ouro-linha);padding:2re
   </div>
 </section>
 
+<!-- FAQ -->
 <section id="faq">
   <div class="container">
     <div class="reveal" style="text-align:center;">
-      <span class="sec-label">Dúvidas frequentes</span>
-      <h2 class="sec-titulo" style="text-align:center;">Perguntas que<br>todo mundo faz.</h2>
+      <span class="sec-label">Suporte Informativo</span>
+      <h2 class="sec-titulo" style="text-align:center;">Dúvidas Recorrentes</h2>
     </div>
     <div class="faq-list">
       <div class="faq-item reveal">
         <button class="faq-q" onclick="toggleFaq(this)">
-          Nunca andei de moto. Consigo tirar a Cat. A assim mesmo?
+          Por que aprender no carro manual analógico/antigo ajuda a pilotar o automático?
           <span class="faq-chevron">▾</span>
         </button>
         <div class="faq-a">
-          <p>Sim, e é exatamente para isso que o método do Cléssio foi desenvolvido. Começamos do absoluto zero — familiarização com a moto, postura, equilíbrio parado, antes de qualquer movimento. Cada etapa só avança quando você está confortável na anterior. Muitos dos alunos aprovados nunca tinham tocado em uma moto antes das aulas.</p>
+          <p>O carro analógico manual exige controle total de coordenação de embreagem e leitura auditiva/tátil do motor. Uma vez que seu cérebro cria essa automação e sensibilidade física real, comandar um veículo moderno com câmbio automático se torna instantâneo, pois você já sabe ler as reações e a física do veículo perfeitamente.</p>
         </div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" onclick="toggleFaq(this)">
-          Já reprovei no DETRAN. Vale a pena tentar com aulas particulares?
+          Como funciona o atendimento a alunos com TEA, TDAH ou idosos?
           <span class="faq-chevron">▾</span>
         </button>
         <div class="faq-a">
-          <p>Vale muito. Reprovação quase sempre tem uma causa específica — e na autoescola ninguém tem tempo de diagnosticar isso individualmente. Traz o relatório do examinador (ou nos conte o que aconteceu) e vamos trabalhar cirurgicamente nesses pontos. Muitos alunos que chegaram já reprovados passaram na tentativa seguinte.</p>
+          <p>A didática é reestruturada. Reduzimos explicações abstratas e focamos em referências visuais e mecânicas exatas. Para neurodivergentes, eliminamos a pressão verbal e respeitamos os limites de sobrecarga sensorial. Para a melhor idade, trabalhamos o reforço gradual da confiança e automatização mecânica sem pressa.</p>
         </div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" onclick="toggleFaq(this)">
-          Quantas aulas vou precisar para estar pronto?
+          Eu preciso ter veículo próprio para realizar os treinamentos?
           <span class="faq-chevron">▾</span>
         </button>
         <div class="faq-a">
-          <p>Depende do seu ponto de partida e do seu ritmo de aprendizado — por isso as aulas são individuais. Há alunos que ficam prontos em 5 aulas; outros precisam de mais. O importante é que você só vai ao exame quando estiver realmente preparado — sem pressa artificial que aumenta o risco de reprovar.</p>
-        </div>
-      </div>
-      <div class="faq-item reveal">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Onde acontecem as aulas? Preciso ter moto?
-          <span class="faq-chevron">▾</span>
-        </button>
-        <div class="faq-a">
-          <p>Não precisa ter moto — o Cléssio resolve essa parte, converse com ele sobre a melhor opção para o seu caso. As aulas acontecem na Região Metropolitana de Campinas, com flexibilidade de local para encaixar na sua rotina.</p>
-        </div>
-      </div>
-      <div class="faq-item reveal">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Como é feito o agendamento e o pagamento?
-          <span class="faq-chevron">▾</span>
-        </button>
-        <div class="faq-a">
-          <p>Tudo pelo WhatsApp — rápido e direto. Entre em contato, conte sua situação e o Cléssio orienta sobre o melhor pacote e agendamento para você. Sem burocracia, sem fila de espera.</p>
+          <p>Não é obrigatório. Desenvolvemos o treinamento inicial nos veículos de instrução (incluindo o carro manual analógico clássico). Posteriormente, o treino pode ser portado e adaptado para o veículo particular do aluno para validação de garagem e caminhos rotineiros.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CTA FINAL -->
 <section id="cta-final">
   <div class="cta-final-inner reveal">
     <div class="cta-final-tag">
-      <span style="font-size:0.9rem;">🏍️</span> Vagas abertas agora
+      <span style="font-size:0.9rem;">⚡</span> Cronograma com vagas disponíveis
     </div>
     <h2 class="cta-final-h">
-      Chega de adiar.<br>Tire sua Cat. A<br><em>de uma vez por todas.</em>
+      Independência e Autonomia<br>no trânsito.<br><em>Fale diretamente comigo.</em>
     </h2>
     <p class="cta-final-sub">
-      Manda uma mensagem agora. Sem compromisso — só uma conversa rápida para entender o que você precisa e como posso ajudar.
+      Alinhamento inicial direto via WhatsApp. Sem intermediários, sem burocracia comercial. Atendimento técnico especializado.
     </p>
     <div class="cta-final-btns">
-      <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Quero%20tirar%20minha%20Cat.%20A%20e%20vi%20seu%20site.%20Pode%20me%20ajudar?" target="_blank" class="cta-wpp">
+      <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Quero%20dar%20início%20às%20aulas%20particulares%20A%20e%20B." target="_blank" class="cta-wpp">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
-        Falar com Cléssio agora
+        Iniciar Mentoria com Cléssio
       </a>
     </div>
     <div class="cta-info-row">
-      <div class="cta-info"><div class="cta-info-ico">📱</div><div class="cta-info-label">WhatsApp</div><div class="cta-info-val">(19) 99326-4055</div></div>
-      <div class="cta-info"><div class="cta-info-ico">📍</div><div class="cta-info-label">Atendimento</div><div class="cta-info-val">Campinas e Região</div></div>
-      <div class="cta-info"><div class="cta-info-ico">🏍️</div><div class="cta-info-label">Categoria</div><div class="cta-info-val">A — Moto</div></div>
-      <div class="cta-info"><div class="cta-info-ico">⚡</div><div class="cta-info-label">Resposta</div><div class="cta-info-val">Em até 1 hora</div></div>
+      <div class="cta-info"><div class="cta-info-ico">📱</div><div class="cta-info-label">WhatsApp Corporativo</div><div class="cta-info-val">(19) 99326-4055</div></div>
+      <div class="cta-info"><div class="cta-info-ico">📍</div><div class="cta-info-label">Região Atendida</div><div class="cta-info-val">Campinas e RMC</div></div>
+      <div class="cta-info"><div class="cta-info-ico">🚗</div><div class="cta-info-label">Categorias Técnicas</div><div class="cta-info-val">A e B Práticas</div></div>
     </div>
   </div>
 </section>
 
+<!-- BLOG -->
 <section id="blog">
   <div class="container">
     <div class="reveal">
-      <span class="sec-label">Informação que anda</span>
-      <h2 class="sec-titulo">Blog do Cléssio</h2>
-      <p class="sec-sub">Dicas, novidades e orientações para quem quer tirar ou melhorar na moto.</p>
+      <span class="sec-label">Artigos Técnicos</span>
+      <h2 class="sec-titulo">Conteúdo Educacional</h2>
     </div>
     <div class="blog-grid">
-      <a class="blog-card reveal" onclick="abrirArtigo(0);return false;" href="#"><div class="blog-thumb bt1"><div class="blog-tag">Legislação</div>📜</div><div class="blog-body"><h3 class="blog-h">Novas Regras da CNH Cat. A em 2025</h3><p class="blog-p">O CONTRAN atualizou normas para a habilitação de moto. Entenda o que mudou e como se preparar.</p><div class="blog-ft"><span class="blog-data">Maio 2025</span><span class="blog-ler">Ler →</span></div></div></a>
-      <a class="blog-card reveal" onclick="abrirArtigo(1);return false;" href="#"><div class="blog-thumb bt2"><div class="blog-tag">Segurança</div>🛡️</div><div class="blog-body"><h3 class="blog-h">Equipamentos Essenciais para Andar de Moto</h3><p class="blog-p">Do capacete às luvas — o que usar e por quê cada item faz diferença em caso de acidente.</p><div class="blog-ft"><span class="blog-data">Abril 2025</span><span class="blog-ler">Ler →</span></div></div></a>
-      <a class="blog-card reveal" onclick="abrirArtigo(2);return false;" href="#"><div class="blog-thumb bt3"><div class="blog-tag">Exame</div>❌</div><div class="blog-body"><h3 class="blog-h">Reprovei no Exame de Moto — E Agora?</h3><p class="blog-p">Os erros mais comuns na Cat. A — e como trabalhá-los para não repeti-los na próxima tentativa.</p><div class="blog-ft"><span class="blog-data">Março 2025</span><span class="blog-ler">Ler →</span></div></div></a>
-      <a class="blog-card reveal" onclick="abrirArtigo(3);return false;" href="#"><div class="blog-thumb bt4"><div class="blog-tag">Iniciantes</div>😰</div><div class="blog-body"><h3 class="blog-h">Medo de Moto: Como Superar e Ganhar Confiança</h3><p class="blog-p">Insegurança nas primeiras aulas é completamente normal. Veja estratégias que funcionam.</p><div class="blog-ft"><span class="blog-data">Fevereiro 2025</span><span class="blog-ler">Ler →</span></div></div></a>
-      <a class="blog-card reveal" onclick="abrirArtigo(4);return false;" href="#"><div class="blog-thumb bt5"><div class="blog-tag">Manutenção</div>🔧</div><div class="blog-body"><h3 class="blog-h">Revisão Básica da Moto: O Que Todo Motociclista Deve Saber</h3><p class="blog-p">Pneus, freios, óleo, corrente — checklist essencial antes de sair.</p><div class="blog-ft"><span class="blog-data">Janeiro 2025</span><span class="blog-ler">Ler →</span></div></div></a>
+      <a class="blog-card reveal" onclick="abrirArtigo(0);return false;" href="#"><div class="blog-thumb bt1"><div class="blog-tag">Mecânica</div>⚙️</div><div class="blog-body"><h3 class="blog-h">Por Que o Carro Analógico Manual Cria Melhores Motoristas?</h3><p class="blog-p">Entenda a importância de dominar as engrenagens e o ponto de embreagem raiz antes de ir para o automático.</p><div class="blog-ft"><span class="blog-data">Junho 2026</span><span class="blog-ler">Ler →</span></div></div></a>
+      <a class="blog-card reveal" onclick="abrirArtigo(1);return false;" href="#"><div class="blog-thumb bt2"><div class="blog-tag">Inclusão</div>🧠</div><div class="blog-body"><h3 class="blog-h">TDAH e Autismo no Trânsito: Estratégias Focadas</h3><p class="blog-p">Como gerenciar o foco visual e a ansiedade periférica na hora de tirar a CNH.</p><div class="blog-ft"><span class="blog-data">Maio 2026</span><span class="blog-ler">Ler →</span></div></div></a>
+      <a class="blog-card reveal" onclick="abrirArtigo(2);return false;" href="#"><div class="blog-thumb bt3"><div class="blog-tag">Melhor Idade</div>👵</div><div class="blog-body"><h3 class="blog-h">Dirigir Após os 60 Anos: Como Reativar Confiança</h3><p class="blog-p">Processos psicomotores e exercícios práticos para manter a total autonomia nas vias urbanas.</p><div class="blog-ft"><span class="blog-data">Abril 2026</span><span class="blog-ler">Ler →</span></div></div></a>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-logo">
     <img src="logo.jpg" alt="Logo" onerror="this.style.display='none'">
     CLÉSSIO <strong>FERREIRA</strong>
   </div>
-  <div class="footer-copy">© 2025 · Instrutor de Moto · Categoria A · Região Metropolitana de Campinas — SP</div>
+  <div class="footer-copy">© 2026 · Credenciado Detran · Categorias A e B · Região Metropolitana de Campinas — SP</div>
 </footer>
 
-<a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Vi%20seu%20site%20e%20quero%20saber%20mais%20sobre%20as%20aulas." class="wpp-float" target="_blank" title="WhatsApp">
+<!-- WPP FLOAT -->
+<a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Gostaria%20de%20tirar%20algumas%20dúvidas%20sobre%20as%20aulas%20particulares." class="wpp-float" target="_blank" title="WhatsApp">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
 </a>
 
+<!-- MODAL BLOG -->
 <div class="modal-ov" id="modalOv" onclick="fecharModal(event)">
   <div class="modal-box">
     <div class="modal-hd"><div class="modal-tag" id="mCat"></div><h2 class="modal-titulo" id="mTit"></h2><p class="modal-meta" id="mMeta"></p><button class="modal-x" onclick="fecharModalBtn()">✕</button></div>
     <div class="modal-body" id="mBody"></div>
-    <div class="modal-ft"><span class="modal-ft-txt">Gostou? Compartilhe com quem precisa!</span><a href="https://wa.me/5519993264055?text=Li%20seu%20artigo%20e%20quero%20saber%20mais." target="_blank" class="cta-wpp" style="font-size:0.87rem;padding:0.6rem 1.2rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg> Falar com Cléssio</a></div>
+    <div class="modal-ft"><span class="modal-ft-txt">Compartilhe o conhecimento prático!</span><a href="https://wa.me/5519993264055?text=Li%20seu%20artigo%20sobre%20direção%20e%20gostaria%20de%20bater%20um%20papo." target="_blank" class="cta-wpp" style="font-size:0.87rem;padding:0.6rem 1.2rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg> Conversar com o Cléssio</a></div>
   </div>
 </div>
 
@@ -812,7 +840,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ["Santa Bárbara d'Oeste",-22.7538,-47.4142],['Monte Mor',-22.9438,-47.3185]
   ].forEach(function(c){
     L.marker([c[1],c[2]],{icon:ico}).addTo(map)
-     .bindPopup('<b style="font-size:0.95rem;color:#0d2255;">'+c[0]+'</b><br><span style="font-size:0.75rem;color:#666;">Cléssio Ferreira · Cat. A</span>');
+     .bindPopup('<b style="font-size:0.95rem;color:#0d2255;">'+c[0]+'</b><br><span style="font-size:0.75rem;color:#666;">Cléssio Ferreira · Cat. A e B</span>');
   });
 });
 
@@ -830,11 +858,9 @@ function toggleFaq(btn) {
 
 // BLOG
 var artigos=[
-  {cat:'Legislação',titulo:'Novas Regras da CNH Cat. A em 2025',meta:'Por Cléssio Ferreira · Maio 2025 · 5 min de leitura',conteudo:'<p>O CONTRAN implementou mudanças importantes nas normas para obtenção da Categoria A em 2025. Se você está thinking em tirar a habilitação de moto, é fundamental entender o que mudou.</p><h3>Principais Mudanças</h3><p>O exame prático agora utiliza sistema digital de avaliação com critérios mais objetivos e transparentes. Quem se prepara adequadamente sai em vantagem.</p><h3>O Que Foi Atualizado</h3><ul><li>Critérios revisados das manobras do exame técnico;</li><li>Exigências atualizadas para o percurso de direção defensiva;</li><li>Normas de segurança para equipamentos durante as aulas práticas;</li><li>Processo de adição da Cat. A para quem já tem outra categoria.</li></ul><h3>Como Se Preparar</h3><p>Acompanho de perto cada atualização da legislação de trânsito. Minhas aulas refletem sempre as exigências atuais do DETRAN de Campinas. Fale comigo pelo WhatsApp para conversarmos sobre a sua situação.</p>'},
-  {cat:'Segurança',titulo:'Equipamentos Essenciais para Andar de Moto com Segurança',meta:'Por Cléssio Ferreira · Abril 2025 · 6 min de leitura',conteudo:'<p>Segurança começa antes de dar a partida. Saber o que vestir — e por quê — é parte fundamental da formação de um bom motociclista.</p><h3>O Capacete</h3><p>É o item mais importante. Deve ter o selo INMETRO, se encaixar corretamente e ser trocado após qualquer impacto, mesmo que pareça intacto por fora.</p><h3>Outros Equipamentos Obrigatórios</h3><ul><li><strong>Jaqueta:</strong> de couro ou material resistente, com proteções nos cotovelos e ombros;</li><li><strong>Luvas:</strong> protegem as mãos em quedas e melhoram o grip no guidão;</li><li><strong>Calça resistente:</strong> nunca ande de bermuda ou calça fina;</li><li><strong>Bota:</strong> cobre o tornozelo e protege em caso de queda.</li></ul><h3>Visibilidade no Trânsito</h3><p>Use roupas com elementos refletivos ou cores chamativas. Motociclistas em pontos cegos de carros e caminhões correm risco real — ser visto é parte da segurança.</p>'},
-  {cat:'Exame',titulo:'Reprovei no Exame de Moto — E Agora?',meta:'Por Cléssio Ferreira · Março 2025 · 6 min de leitura',conteudo:'<p>Reprovar no exame prático da Cat. A é mais comum do que parece — e não significa que você não consegue. Significa que falta preparo em pontos específicos.</p><h3>Erros Mais Comuns no Exame Técnico</h3><ul><li><strong>Baliza:</strong> a manobra que mais reprova. Exige treino repetitivo até virar automático;</li><li><strong>Percurso lento:</strong> equilíbrio em baixa velocidade sem apoiar os pés;</li><li><strong>Slalom:</strong> passagem em zigue-zague entre cones sem derrubá-los.</li></ul><h3>Erros Mais Comuns no Exame Prático</h3><ul><li>Falta de sinalização nas conversões;</li><li>Velocidade inadequada;</li><li>Desrespeito à sinalização de trânsito;</li><li>Nervosismo que provoca erros que não acontecem no treino.</li></ul><h3>O Próximo Passo</h3><p>Guarde o relatório do examinador com os erros cometidos. Com esse diagnóstico, trabalhamos cirurgicamente nos pontos de falha. Me chama no WhatsApp.</p>'},
-  {cat:'Iniciantes',titulo:'Medo de Moto: Como Superar e Ganhar Confiança',meta:'Por Cléssio Ferreira · Fevereiro 2025 · 7 min de leitura',conteudo:'<p>Sentir insegurança no início é absolutamente normal — e não é motivo para desistir. Em 23 anos de instrução, ajudei centenas de pessoas que chegaram tremendo para a primeira aula.</p><h3>Por Que Sentimos Medo?</h3><ul><li>A moto exige equilíbrio ativo, diferente do carro;</li><li>Medo do desconhecido é natural em qualquer aprendizado;</li><li>Experiências ruins anteriores aumentam a ansiedade.</li></ul><h3>O Que Funciona</h3><ul><li><strong>Exposição gradual:</strong> começar parado, depois em baixa velocidade, em áreas tranquilas;</li><li><strong>Conhecer a moto:</strong> entender como ela funciona elimina muito do medo do desconhecido;</li><li><strong>Instrutor certo:</strong> jamais aprenda com quem grita ou pressiona.</li></ul><h3>Meu Compromisso</h3><p>Nunca grito, nunca pressiono. Avanço no seu ritmo e faço você sair de cada aula mais confiante.</p>'},
-  {cat:'Manutenção',titulo:'Revisão Básica da Moto: O Que Todo Motociclista Deve Saber',meta:'Por Cléssio Ferreira · Janeiro 2025 · 5 min de leitura',conteudo:'<p>Saber verificar a moto antes de sair é tão importante quanto saber pilotá-la. Muitos acidentes acontecem por falhas mecânicas que poderiam ser evitadas.</p><h3>O Checklist Básico</h3><ul><li><strong>Pneus:</strong> pressão e desgaste;</li><li><strong>Freios:</strong> firmeza da alavanca e do pedal;</li><li><strong>Óleo:</strong> nível pelo visor lateral;</li><li><strong>Corrente:</strong> limpa, lubrificada e com tensão correta;</li><li><strong>Luzes:</strong> farol, seta e freio.</li></ul><h3>Regra de Ouro</h3><p>Em caso de dúvida, não saia com a moto. Uma revisão preventiva é muito mais barata — e segura — do que um acidente.</p>'}
+  {cat:'Mecânica',titulo:'Por Que o Carro Analógico Manual Cria Melhores Motoristas?',meta:'Por Cléssio Ferreira · Junho 2026 · 5 min de leitura',conteudo:'<p>Aprender em um carro puramente manual e mecânico força o condutor a entender o comportamento real do motor. Sem assistências eletrônicas que escondem imperfeições, você desenvolve sensibilidade absoluta de embreagem e tempo exato de troca de marcha.</p><h3>Vantagem Estratégica</h3><p>Quem tem controle cirúrgico sobre a embreagem analógica desenvolve uma memória muscular impecável. O resultado prático? Ao assumir a direção de um carro automático moderno, o condutor sente uma facilidade extrema, controlando o carro com segurança máxima em qualquer aclive.</p>'},
+  {cat:'Inclusão',titulo:'TDAH e Autismo no Trânsito: Estratégias Focadas',meta:'Por Cléssio Ferreira · Maio 2026 · 6 min de leitura',conteudo:'<p>A neurodivergência exige rotinas previsíveis e clareza absoluta na transmissão de comandos práticos. Em nosso método, quebramos os processos complexos do trânsito em pequenas etapas lógicas compartilhadas sem ambiguidades.</p><h3>Gerenciamento de Foco</h3><p>Trabalhamos o direcionamento visual sistemático para mitigar a fadiga por hiperfoco ou a dispersão sensorial. O trânsito se torna seguro quando o ambiente de aprendizado elimina a ansiedade de julgamento ou estímulos confusos dentro do veículo.</p>'},
+  {cat:'Melhor Idade',titulo:'Dirigir Após os 60 Anos: Como Reativar Confiança',meta:'Por Cléssio Ferreira · Abril 2026 · 5 min de leitura',conteudo:'<p>A maturidade traz prudência, mas o medo de engarrafamentos urbanos pode afastar idosos do volante. Nosso programa foca na construção gradual dos reflexos e na validação mecânica sistemática.</p><h3>Autonomia Preservada</h3><p>Respeitamos rigorosamente o tempo de resposta psicomotor de cada condutor. Praticamos manobras essenciais, retornos, estacionamento estruturado e rotas do dia a dia, devolvendo a liberdade de ir e vir com segurança defensiva total.</p>'}
 ];
 function abrirArtigo(i){var a=artigos[i];document.getElementById('mCat').textContent=a.cat;document.getElementById('mTit').textContent=a.titulo;document.getElementById('mMeta').textContent=a.meta;document.getElementById('mBody').innerHTML=a.conteudo;document.getElementById('modalOv').classList.add('open');document.body.style.overflow='hidden';}
 function fecharModal(e){if(e.target===document.getElementById('modalOv'))fecharModalBtn();}
