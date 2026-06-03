@@ -3,247 +3,442 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cléssio Ferreira — Instrutor de Moto | Região Metropolitana de Campinas</title>
-<meta name="description" content="Aulas particulares de moto com Cléssio Ferreira. 23 anos de experiência. Categoria A na Região Metropolitana de Campinas.">
+<title>Cléssio Ferreira — Instrutor de Moto Cat. A | Campinas e Região</title>
+<meta name="description" content="Aulas particulares de moto em Campinas. Método personalizado, 23 anos de experiência. Aprovação no exame do DETRAN com atenção que autoescola não dá. Fale agora!">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Serif+Display:ital@1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
 :root{
-  --azul-escuro:#071428;
-  --azul:#0d2255;
-  --azul-medio:#1a3a7a;
-  --azul-claro:#2255a8;
+  --azul:#071428;
+  --azul2:#0d2255;
+  --azul3:#1a3a7a;
   --ouro:#c9a84c;
-  --ouro-claro:#e4c97a;
+  --ouro2:#e4c97a;
   --branco:#f0f4ff;
   --cinza:#8899bb;
-  --cinza-claro:#b8c8e8;
-  --linha:rgba(255,255,255,0.08);
-  --linha-ouro:rgba(201,168,76,0.25);
+  --cinza2:#b8c8e8;
+  --verde:#25d366;
+  --linha:rgba(255,255,255,0.07);
+  --ouro-linha:rgba(201,168,76,0.2);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;background:var(--azul-escuro);color:var(--branco);overflow-x:hidden;}
-::-webkit-scrollbar{width:4px;}
-::-webkit-scrollbar-track{background:var(--azul-escuro);}
-::-webkit-scrollbar-thumb{background:var(--ouro);border-radius:2px;}
+body{font-family:'DM Sans',sans-serif;background:var(--azul);color:var(--branco);overflow-x:hidden;line-height:1.6;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--ouro);}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2.5rem;height:70px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,20,40,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--linha-ouro);}
-.nav-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none;}
-.nav-logo img{height:48px;width:48px;border-radius:50%;object-fit:cover;}
-.nav-logo-txt{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:1px;color:var(--branco);line-height:1.1;}
-.nav-logo-txt span{color:var(--ouro);font-size:0.7rem;font-weight:500;letter-spacing:2px;display:block;font-family:'DM Sans',sans-serif;}
-.nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{color:var(--cinza-claro);text-decoration:none;font-size:0.85rem;font-weight:500;letter-spacing:0.5px;transition:color 0.2s;}
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:68px;padding:0 2.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(7,20,40,0.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--ouro-linha);
+  transition:box-shadow 0.3s;
+}
+nav.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.5);}
+.nav-logo{display:flex;align-items:center;gap:0.7rem;text-decoration:none;}
+.nav-logo img{height:44px;width:44px;border-radius:50%;object-fit:cover;}
+.nav-logo-txt{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:1px;color:var(--branco);line-height:1.15;}
+.nav-logo-sub{color:var(--ouro);font-size:0.65rem;font-weight:500;letter-spacing:2px;font-family:'DM Sans',sans-serif;}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+.nav-links a{color:var(--cinza2);text-decoration:none;font-size:0.84rem;font-weight:500;transition:color 0.2s;}
 .nav-links a:hover{color:var(--ouro);}
-.nav-cta{background:var(--ouro)!important;color:var(--azul-escuro)!important;padding:0.5rem 1.3rem;border-radius:4px;font-weight:700!important;transition:background 0.2s!important;}
-.nav-cta:hover{background:var(--ouro-claro)!important;}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:5px;}
-.hamburger span{display:block;width:24px;height:1.5px;background:var(--branco);border-radius:2px;transition:all 0.3s;}
-.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:var(--azul);z-index:999;padding:1.5rem 2rem;flex-direction:column;gap:0;border-bottom:1px solid var(--linha-ouro);}
+.nav-cta-btn{
+  background:var(--verde);color:#fff!important;
+  padding:0.5rem 1.2rem;border-radius:6px;
+  font-weight:700!important;font-size:0.84rem!important;
+  display:flex;align-items:center;gap:0.5rem;
+  transition:opacity 0.2s!important;
+}
+.nav-cta-btn:hover{opacity:0.88!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--branco);border-radius:2px;transition:all 0.3s;}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:var(--azul2);z-index:99;padding:1.2rem 2rem;flex-direction:column;border-bottom:1px solid var(--ouro-linha);}
 .mobile-menu.open{display:flex;}
-.mobile-menu a{color:var(--branco);text-decoration:none;font-weight:600;font-size:1rem;padding:1rem 0;border-bottom:1px solid var(--linha);}
+.mobile-menu a{color:var(--branco);text-decoration:none;font-weight:600;font-size:1rem;padding:0.85rem 0;border-bottom:1px solid var(--linha);}
 
-/* HERO */
-#hero{min-height:100vh;padding:110px 2.5rem 6rem;position:relative;overflow:hidden;display:flex;align-items:center;background:linear-gradient(135deg,var(--azul-escuro) 0%,var(--azul) 55%,#0d1e45 100%);}
-.hero-grid-bg{position:absolute;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(255,255,255,0.012) 80px),repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(255,255,255,0.012) 80px);pointer-events:none;}
-.hero-orb{position:absolute;top:-10%;right:-5%;width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,0.07) 0%,transparent 65%);pointer-events:none;}
-.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.1fr 0.9fr;gap:4rem;align-items:center;position:relative;z-index:1;}
-.hero-tag{display:inline-flex;align-items:center;gap:0.5rem;border:1px solid var(--linha-ouro);color:var(--ouro);padding:0.35rem 1rem;border-radius:2px;font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.8rem;animation:fadeUp 0.6s ease both;}
-.hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--ouro);animation:blink 2s infinite;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
-h1.hero-titulo{font-family:'Barlow Condensed',sans-serif;font-size:clamp(3.5rem,6.5vw,6rem);font-weight:900;line-height:0.95;letter-spacing:-1px;color:var(--branco);margin-bottom:1.5rem;animation:fadeUp 0.6s ease 0.1s both;}
-h1.hero-titulo em{font-style:normal;color:transparent;-webkit-text-stroke:2px var(--ouro);}
-.hero-desc{color:var(--cinza-claro);font-size:1rem;line-height:1.8;max-width:480px;margin-bottom:2.5rem;animation:fadeUp 0.6s ease 0.2s both;font-weight:300;}
-.hero-nums{display:flex;gap:3rem;margin-bottom:2.5rem;animation:fadeUp 0.6s ease 0.3s both;}
-.hero-num-val{font-family:'Barlow Condensed',sans-serif;font-size:2.8rem;font-weight:900;color:var(--branco);line-height:1;}
-.hero-num-val span{color:var(--ouro);}
-.hero-num-label{font-size:0.7rem;font-weight:500;color:var(--cinza);letter-spacing:1px;text-transform:uppercase;margin-top:0.3rem;}
-.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.6s ease 0.4s both;}
+/* ── HERO ── */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:100px 2.5rem 5rem;
+  position:relative;overflow:hidden;
+  background:linear-gradient(150deg,var(--azul) 0%,#0d1e45 60%,#091630 100%);
+}
+.hero-grid-bg{
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(255,255,255,0.013) 80px),
+             repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(255,255,255,0.013) 80px);
+  pointer-events:none;
+}
+.hero-orb1{position:absolute;top:-15%;right:-8%;width:650px;height:650px;background:radial-gradient(circle,rgba(201,168,76,0.06) 0%,transparent 60%);pointer-events:none;}
+.hero-orb2{position:absolute;bottom:-20%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(26,58,122,0.25) 0%,transparent 65%);pointer-events:none;}
 
-/* BOTÕES */
-.btn-wpp{display:inline-flex;align-items:center;gap:0.65rem;background:#25d366;color:white;padding:0.9rem 1.8rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:0.95rem;transition:all 0.2s;box-shadow:0 4px 20px rgba(37,211,102,0.25);}
-.btn-wpp:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,0.45);}
-.btn-ghost{display:inline-flex;align-items:center;gap:0.5rem;background:transparent;color:var(--branco);padding:0.9rem 1.8rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.95rem;border:1px solid rgba(255,255,255,0.2);transition:all 0.2s;}
-.btn-ghost:hover{border-color:var(--ouro);color:var(--ouro);}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 420px;gap:5rem;align-items:center;position:relative;z-index:1;}
 
-/* HERO DIREITA */
-.hero-right{position:relative;animation:fadeRight 0.8s ease 0.2s both;display:flex;flex-direction:column;align-items:center;gap:1.5rem;}
-.hero-logo-wrap{width:300px;height:300px;display:flex;align-items:center;justify-content:center;position:relative;}
-.hero-logo-wrap::before{content:'';position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(var(--ouro) 0deg,transparent 60deg,var(--ouro) 120deg,transparent 180deg,var(--ouro) 240deg,transparent 300deg,var(--ouro) 360deg);animation:rotateBorder 6s linear infinite;opacity:0.35;}
-.hero-logo-wrap::after{content:'';position:absolute;inset:0;border-radius:50%;background:var(--azul-escuro);}
-@keyframes rotateBorder{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
-.hero-logo-img{width:280px;height:280px;border-radius:50%;object-fit:cover;position:relative;z-index:1;}
-.hero-logo-ph{width:280px;height:280px;border-radius:50%;background:var(--azul-medio);border:2px solid var(--linha-ouro);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:4rem;font-weight:900;color:var(--ouro);position:relative;z-index:1;letter-spacing:2px;}
-.hero-badge-row{display:flex;gap:1rem;}
-.hero-badge{background:rgba(201,168,76,0.08);border:1px solid var(--linha-ouro);padding:0.6rem 1rem;border-radius:4px;text-align:center;}
-.hero-badge-num{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:var(--ouro);line-height:1;}
-.hero-badge-txt{font-size:0.68rem;font-weight:600;color:var(--cinza);letter-spacing:1px;text-transform:uppercase;}
+/* prova social topo */
+.hero-social-proof{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  background:rgba(201,168,76,0.07);border:1px solid var(--ouro-linha);
+  padding:0.45rem 1rem;border-radius:100px;
+  margin-bottom:1.8rem;
+  animation:fadeUp 0.5s ease both;
+}
+.hero-stars{color:var(--ouro);font-size:0.8rem;letter-spacing:1px;}
+.hero-proof-txt{font-size:0.75rem;color:var(--cinza2);font-weight:500;}
+.hero-proof-dot{width:4px;height:4px;border-radius:50%;background:var(--ouro);opacity:0.5;}
 
-/* SEÇÕES */
+/* headline */
+h1.titulo-hero{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(3rem,6vw,5.5rem);
+  font-weight:900;line-height:1;
+  letter-spacing:-0.5px;
+  color:var(--branco);
+  margin-bottom:1.4rem;
+  animation:fadeUp 0.5s ease 0.1s both;
+}
+.titulo-hero .linha-ouro{
+  display:block;color:var(--ouro);
+  -webkit-text-fill-color:var(--ouro);
+}
+.titulo-hero .linha-outline{
+  display:block;
+  color:transparent;
+  -webkit-text-stroke:2px var(--ouro2);
+  opacity:0.7;
+}
+
+.hero-sub{
+  font-size:1.05rem;color:var(--cinza2);line-height:1.75;
+  max-width:500px;margin-bottom:2rem;
+  font-weight:300;animation:fadeUp 0.5s ease 0.2s both;
+}
+.hero-sub strong{color:var(--branco);font-weight:600;}
+
+/* mini stats */
+.hero-stats{
+  display:flex;gap:0;margin-bottom:2.2rem;
+  animation:fadeUp 0.5s ease 0.3s both;
+}
+.hero-stats:last-child{border-right:1px solid var(--ouro-linha);border-radius:0 6px 6px 0;}
+.hero-stat{
+  padding:0.9rem 1.5rem;
+  border:1px solid var(--ouro-linha);
+  border-right:none;
+  background:rgba(201,168,76,0.04);
+}
+.hero-stat:first-child{border-radius:6px 0 0 6px;}
+.hero-stat:last-child{border-right:1px solid var(--ouro-linha);border-radius:0 6px 6px 0;}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:1.9rem;font-weight:900;color:var(--ouro);line-height:1;}
+.stat-label{font-size:0.68rem;font-weight:600;color:var(--cinza);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+
+/* CTAs */
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.5s ease 0.4s both;}
+.cta-wpp{
+  display:inline-flex;align-items:center;gap:0.65rem;
+  background:var(--verde);color:#fff;
+  padding:1rem 2rem;border-radius:8px;
+  text-decoration:none;font-weight:700;font-size:1rem;
+  transition:all 0.2s;
+  box-shadow:0 4px 24px rgba(37,211,102,0.3);
+}
+.cta-wpp:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(37,211,102,0.5);}
+.cta-ghost{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:transparent;color:var(--branco);
+  padding:1rem 1.8rem;border-radius:8px;
+  text-decoration:none;font-weight:600;font-size:0.95rem;
+  border:1px solid rgba(255,255,255,0.18);transition:all 0.2s;
+}
+.cta-ghost:hover{border-color:var(--ouro);color:var(--ouro);}
+
+/* hero direita — card de confiança */
+.hero-card{
+  background:rgba(13,34,85,0.6);
+  border:1px solid var(--ouro-linha);
+  border-radius:16px;
+  padding:2rem;
+  backdrop-filter:blur(12px);
+  animation:fadeRight 0.7s ease 0.2s both;
+}
+.hero-card-logo{
+  width:110px;height:110px;border-radius:50%;
+  object-fit:cover;display:block;margin:0 auto 1.5rem;
+  border:2px solid var(--ouro-linha);
+}
+.hero-card-logo-ph{
+  width:110px;height:110px;border-radius:50%;
+  background:var(--azul3);border:2px solid var(--ouro-linha);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow Condensed',sans-serif;font-size:2rem;
+  font-weight:900;color:var(--ouro);margin:0 auto 1.5rem;
+}
+.hero-card-nome{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1.6rem;font-weight:900;
+  text-align:center;color:var(--branco);
+  margin-bottom:0.2rem;
+}
+.hero-card-cargo{text-align:center;font-size:0.78rem;color:var(--ouro);letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:1.5rem;}
+.hero-card-items{display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.5rem;}
+.hero-card-item{
+  display:flex;align-items:center;gap:0.75rem;
+  font-size:0.88rem;color:var(--cinza2);font-weight:400;
+}
+.hci-dot{width:6px;height:6px;border-radius:50%;background:var(--ouro);flex-shrink:0;}
+.hero-card-cta{
+  display:flex;align-items:center;justify-content:center;gap:0.6rem;
+  background:var(--verde);color:#fff;
+  padding:0.9rem;border-radius:8px;
+  text-decoration:none;font-weight:700;font-size:0.95rem;
+  transition:all 0.2s;width:100%;
+  box-shadow:0 4px 20px rgba(37,211,102,0.25);
+}
+.hero-card-cta:hover{opacity:0.9;transform:translateY(-1px);}
+.hero-card-nota{text-align:center;font-size:0.72rem;color:var(--cinza);margin-top:0.75rem;}
+
+/* ── BARRA DE URGÊNCIA ── */
+.barra-urgencia{
+  background:linear-gradient(90deg,var(--ouro) 0%,var(--ouro2) 100%);
+  padding:0.75rem 2.5rem;
+  text-align:center;
+  font-size:0.85rem;font-weight:700;
+  color:var(--azul);letter-spacing:0.5px;
+}
+.barra-urgencia span{opacity:0.7;font-weight:400;}
+
+/* ── SEÇÕES ── */
 section{padding:6rem 2.5rem;border-top:1px solid var(--linha);}
 .container{max-width:1200px;margin:0 auto;}
-.label-sec{display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--ouro);margin-bottom:1rem;}
-h2.sec-titulo{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:900;line-height:1;color:var(--branco);margin-bottom:1.2rem;letter-spacing:-0.3px;}
-.sec-sub{color:var(--cinza);font-size:0.97rem;line-height:1.8;font-weight:300;}
+.sec-label{display:inline-block;font-size:0.68rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--ouro);margin-bottom:0.9rem;}
+h2.sec-titulo{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:900;line-height:1;color:var(--branco);margin-bottom:1rem;letter-spacing:-0.3px;}
+.sec-sub{color:var(--cinza);font-size:0.97rem;line-height:1.8;font-weight:300;max-width:560px;}
 
-/* SOBRE */
-#sobre{background:linear-gradient(180deg,var(--azul-escuro),var(--azul));}
-.sobre-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:0.9fr 1.1fr;gap:6rem;align-items:center;}
-.sobre-foto-wrap{width:100%;height:500px;background:var(--azul-medio);border-radius:4px;overflow:hidden;position:relative;border:1px solid var(--linha-ouro);}
-.sobre-foto-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
-.sobre-foto-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;color:var(--cinza);}
-.sobre-accent{position:absolute;top:-0.8rem;left:-0.8rem;width:100px;height:100px;border:1px solid var(--linha-ouro);border-radius:4px;z-index:-1;}
-.sobre-lista{list-style:none;margin:2rem 0;display:flex;flex-direction:column;gap:1rem;}
-.sobre-lista li{display:flex;align-items:flex-start;gap:1rem;font-size:0.95rem;color:var(--cinza-claro);line-height:1.5;padding-bottom:1rem;border-bottom:1px solid var(--linha);}
+/* ── DOR/SOLUÇÃO ── */
+#dor{background:linear-gradient(180deg,var(--azul) 0%,var(--azul2) 100%);}
+.dor-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:3.5rem;background:var(--linha);border:1px solid var(--linha);border-radius:8px;overflow:hidden;}
+.dor-col{background:var(--azul2);padding:2.5rem;}
+.dor-col.sol{background:rgba(13,34,85,0.5);}
+.dor-col-label{display:flex;align-items:center;gap:0.5rem;font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;}
+.dor-col-label .ico{font-size:1rem;}
+.dor-col-label.red{color:#ff6b6b;}
+.dor-col-label.green{color:#4ade80;}
+.dor-item{display:flex;align-items:flex-start;gap:0.9rem;margin-bottom:1rem;font-size:0.93rem;color:var(--cinza2);line-height:1.5;}
+.dor-item:last-child{margin-bottom:0;}
+.dor-ico{flex-shrink:0;font-size:1rem;margin-top:1px;}
+
+/* ── SOBRE ── */
+#sobre{background:var(--azul);}
+.sobre-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:400px 1fr;gap:5rem;align-items:start;}
+.sobre-foto-box{position:relative;}
+.sobre-foto{width:100%;height:480px;border-radius:8px;object-fit:cover;object-position:top;display:block;border:1px solid var(--ouro-linha);}
+.sobre-foto-ph{width:100%;height:480px;border-radius:8px;background:var(--azul3);border:1px dashed var(--ouro-linha);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;color:var(--cinza);}
+.sobre-corner{position:absolute;bottom:-12px;right:-12px;width:80px;height:80px;border-right:2px solid var(--ouro);border-bottom:2px solid var(--ouro);border-radius:0 0 8px 0;opacity:0.4;}
+.sobre-corner2{position:absolute;top:-12px;left:-12px;width:80px;height:80px;border-left:2px solid var(--ouro);border-top:2px solid var(--ouro);border-radius:8px 0 0 0;opacity:0.4;}
+.sobre-content{padding-top:0.5rem;}
+.sobre-lista{list-style:none;margin:1.5rem 0 2rem;display:flex;flex-direction:column;gap:0.9rem;}
+.sobre-lista li{display:flex;align-items:flex-start;gap:1rem;font-size:0.93rem;color:var(--cinza2);line-height:1.5;padding-bottom:0.9rem;border-bottom:1px solid var(--linha);}
 .sobre-lista li:last-child{border-bottom:none;}
-.sobre-check{width:22px;height:22px;border-radius:50%;background:rgba(201,168,76,0.1);border:1px solid var(--linha-ouro);display:flex;align-items:center;justify-content:center;color:var(--ouro);font-size:0.65rem;flex-shrink:0;margin-top:1px;}
+.sobre-check{width:20px;height:20px;border-radius:50%;background:rgba(201,168,76,0.1);border:1px solid var(--ouro-linha);display:flex;align-items:center;justify-content:center;color:var(--ouro);font-size:0.6rem;flex-shrink:0;margin-top:2px;}
+.credencial-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;}
+.credencial{background:rgba(201,168,76,0.07);border:1px solid var(--ouro-linha);border-radius:6px;padding:0.6rem 1rem;font-size:0.78rem;font-weight:600;color:var(--ouro);}
 
-/* SERVIÇOS */
-#servicos{background:var(--azul);}
-.servicos-grid{max-width:1200px;margin:3rem auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linha);border:1px solid var(--linha);border-radius:4px;overflow:hidden;}
-.servico-item{background:var(--azul);padding:2.5rem 2rem;transition:background 0.3s;position:relative;overflow:hidden;}
-.servico-item::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ouro),var(--ouro-claro));transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
-.servico-item:hover{background:var(--azul-medio);}
-.servico-item:hover::after{transform:scaleX(1);}
-.servico-num{font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;font-weight:700;color:var(--ouro);letter-spacing:2px;margin-bottom:1.2rem;opacity:0.7;}
-.servico-icon-big{font-size:2rem;margin-bottom:1rem;display:block;}
-.servico-nome{font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:800;color:var(--branco);letter-spacing:0.3px;margin-bottom:0.75rem;}
-.servico-desc{color:var(--cinza);font-size:0.88rem;line-height:1.7;font-weight:300;}
+/* ── SERVIÇOS ── */
+#servicos{background:var(--azul2);}
+.servicos-grid{max-width:1200px;margin:3rem auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linha);border:1px solid var(--linha);border-radius:8px;overflow:hidden;}
+.srv{background:var(--azul2);padding:2.2rem 1.8rem;position:relative;transition:background 0.3s;overflow:hidden;}
+.srv::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ouro),var(--ouro2));transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+.srv:hover{background:rgba(26,58,122,0.6);}
+.srv:hover::before{transform:scaleX(1);}
+.srv-num{font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;font-weight:700;color:var(--ouro);letter-spacing:2px;opacity:0.6;margin-bottom:1rem;}
+.srv-ico{font-size:2rem;margin-bottom:0.9rem;display:block;}
+.srv-nome{font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--branco);margin-bottom:0.6rem;}
+.srv-desc{color:var(--cinza);font-size:0.86rem;line-height:1.65;font-weight:300;}
 
-/* DEPOIMENTOS */
-#depoimentos{background:var(--azul-escuro);}
-.depoimentos-grid{max-width:1200px;margin:3rem auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-.dep-card{background:var(--azul);border:1px solid var(--linha);border-radius:4px;padding:2rem;transition:border-color 0.3s,transform 0.3s;position:relative;}
-.dep-card:hover{border-color:var(--linha-ouro);transform:translateY(-4px);}
-.dep-aspas{font-family:'DM Serif Display',serif;font-style:italic;font-size:4rem;line-height:1;color:var(--ouro);opacity:0.2;position:absolute;top:1rem;left:1.5rem;}
-.dep-texto{font-style:italic;font-size:0.92rem;color:var(--cinza-claro);line-height:1.75;margin-bottom:1.5rem;position:relative;z-index:1;font-weight:300;}
-.dep-autor{display:flex;align-items:center;gap:1rem;}
-.dep-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--ouro),var(--ouro-claro));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.82rem;color:var(--azul-escuro);flex-shrink:0;}
-.dep-nome{font-weight:600;color:var(--branco);font-size:0.9rem;}
-.dep-perfil{color:var(--cinza);font-size:0.78rem;margin-top:2px;}
-.dep-stars{color:var(--ouro);font-size:0.75rem;margin-top:3px;}
+/* ── DEPOIMENTOS ── */
+#depoimentos{background:var(--azul);}
+.dep-grid{max-width:1200px;margin:3rem auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.dep-card{background:var(--azul2);border:1px solid var(--linha);border-radius:8px;padding:1.8rem;position:relative;transition:border-color 0.3s,transform 0.3s;}
+.dep-card:hover{border-color:var(--ouro-linha);transform:translateY(-4px);}
+.dep-aspas{font-family:'DM Serif Display',serif;font-style:italic;font-size:4rem;line-height:1;color:var(--ouro);opacity:0.15;position:absolute;top:0.8rem;left:1.3rem;}
+.dep-txt{font-style:italic;font-size:0.9rem;color:var(--cinza2);line-height:1.75;margin-bottom:1.3rem;position:relative;z-index:1;font-weight:300;}
+.dep-autor{display:flex;align-items:center;gap:0.9rem;}
+.dep-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--ouro),var(--ouro2));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem;color:var(--azul);flex-shrink:0;}
+.dep-nome{font-weight:600;color:var(--branco);font-size:0.88rem;}
+.dep-info{color:var(--cinza);font-size:0.75rem;margin-top:1px;}
+.dep-stars{color:var(--ouro);font-size:0.72rem;margin-top:2px;}
 
-/* ÁREA / MAPA */
-#area{background:var(--azul);}
-.area-head{max-width:1200px;margin:0 auto 3.5rem;}
-.area-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:start;}
-.cidades-wrap{display:grid;grid-template-columns:repeat(2,1fr);gap:0.5rem;margin-top:2rem;}
-.cidade-tag{padding:0.55rem 0.8rem;border:1px solid var(--linha);border-radius:4px;font-size:0.82rem;font-weight:500;color:var(--cinza-claro);text-align:center;transition:all 0.2s;cursor:default;}
-.cidade-tag:hover{border-color:var(--ouro);color:var(--ouro);}
-.mapa-container{border-radius:8px;overflow:hidden;border:1px solid var(--linha-ouro);box-shadow:0 8px 30px rgba(0,0,0,0.4);height:440px;position:relative;}
+/* ── POR QUE CLÉSSIO ── */
+#diferenciais{background:linear-gradient(135deg,var(--azul2) 0%,#0a1830 100%);position:relative;overflow:hidden;}
+#diferenciais::before{content:'';position:absolute;top:-50%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,0.05) 0%,transparent 60%);pointer-events:none;}
+.dif-grid{max-width:1200px;margin:3rem auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.dif-card{background:rgba(7,20,40,0.5);border:1px solid var(--ouro-linha);border-radius:8px;padding:2rem;transition:background 0.3s,transform 0.3s;backdrop-filter:blur(8px);}
+.dif-card:hover{background:rgba(7,20,40,0.8);transform:translateY(-3px);}
+.dif-ico{font-size:2.2rem;margin-bottom:1rem;display:block;}
+.dif-titulo{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:800;color:var(--ouro);margin-bottom:0.6rem;}
+.dif-desc{color:var(--cinza2);font-size:0.87rem;line-height:1.65;font-weight:300;}
+
+/* ── ÁREA / MAPA ── */
+#area{background:var(--azul2);}
+.area-inner{max-width:1200px;margin:3rem auto 0;display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start;}
+.cidades-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0.45rem;margin-top:1.5rem;}
+.cidade-pill{padding:0.5rem 0.75rem;border:1px solid var(--linha);border-radius:6px;font-size:0.82rem;font-weight:500;color:var(--cinza2);text-align:center;transition:all 0.2s;cursor:default;}
+.cidade-pill:hover{border-color:var(--ouro);color:var(--ouro);}
+.mapa-wrap{border-radius:10px;overflow:hidden;border:1px solid var(--ouro-linha);box-shadow:0 8px 40px rgba(0,0,0,0.4);height:440px;}
 #mapa{width:100%;height:100%;}
 
-/* BLOG */
-#blog{background:var(--azul-escuro);}
+/* ── FAQ ── */
+#faq{background:var(--azul);}
+.faq-list{max-width:800px;margin:3rem auto 0;display:flex;flex-direction:column;gap:0;}
+.faq-item{border-bottom:1px solid var(--linha);overflow:hidden;}
+.faq-q{
+  width:100%;background:none;border:none;padding:1.3rem 0;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  cursor:pointer;text-align:left;color:var(--branco);
+  font-family:'DM Sans',sans-serif;font-size:0.97rem;font-weight:600;
+  transition:color 0.2s;
+}
+.faq-q:hover{color:var(--ouro);}
+.faq-chevron{flex-shrink:0;font-size:1.1rem;color:var(--ouro);transition:transform 0.3s;}
+.faq-q.open .faq-chevron{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.3s;}
+.faq-a.open{max-height:500px;padding-bottom:1.2rem;}
+.faq-a p{color:var(--cinza2);font-size:0.92rem;line-height:1.75;font-weight:300;}
+
+/* ── CTA FINAL ── */
+#cta-final{
+  padding:8rem 2.5rem;
+  background:linear-gradient(135deg,var(--azul2) 0%,var(--azul) 100%);
+  position:relative;overflow:hidden;
+  text-align:center;
+}
+#cta-final::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(37,211,102,0.06) 0%,transparent 60%);pointer-events:none;}
+.cta-final-inner{max-width:700px;margin:0 auto;position:relative;z-index:1;}
+.cta-final-tag{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.2);color:#4ade80;padding:0.35rem 1rem;border-radius:100px;font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;}
+.cta-final-h{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:900;line-height:0.95;color:var(--branco);margin-bottom:1.2rem;}
+.cta-final-h em{font-style:normal;color:var(--ouro);}
+.cta-final-sub{color:var(--cinza);font-size:1rem;font-weight:300;line-height:1.7;max-width:480px;margin:0 auto 2.5rem;}
+.cta-final-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem;}
+.cta-final-btns .cta-wpp{font-size:1.05rem;padding:1.1rem 2.5rem;}
+.cta-info-row{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;}
+.cta-info{display:flex;flex-direction:column;align-items:center;gap:0.5rem;}
+.cta-info-ico{width:44px;height:44px;border:1px solid var(--ouro-linha);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+.cta-info-label{font-size:0.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cinza);}
+.cta-info-val{font-size:0.88rem;font-weight:500;color:var(--branco);}
+
+/* ── BLOG ── */
+#blog{background:var(--azul2);}
 .blog-grid{max-width:1200px;margin:3rem auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-.blog-card{background:var(--azul);border:1px solid var(--linha);border-radius:4px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:border-color 0.3s,transform 0.3s;cursor:pointer;}
-.blog-card:hover{border-color:var(--linha-ouro);transform:translateY(-4px);}
-.blog-thumb{height:150px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;}
+.blog-card{background:var(--azul);border:1px solid var(--linha);border-radius:8px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:border-color 0.3s,transform 0.3s;cursor:pointer;}
+.blog-card:hover{border-color:var(--ouro-linha);transform:translateY(-4px);}
+.blog-thumb{height:140px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;}
 .bt1{background:linear-gradient(135deg,#071428,#1a3060);}
 .bt2{background:linear-gradient(135deg,#071a10,#0d2e20);}
 .bt3{background:linear-gradient(135deg,#1a0707,#2e1010);}
 .bt4{background:linear-gradient(135deg,#07071a,#10102e);}
 .bt5{background:linear-gradient(135deg,#1a1207,#2e2010);}
-.blog-cat-tag{position:absolute;top:1rem;left:1rem;background:var(--ouro);color:var(--azul-escuro);padding:0.2rem 0.7rem;border-radius:2px;font-size:0.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
-.blog-body{padding:1.5rem;flex:1;display:flex;flex-direction:column;}
-.blog-titulo{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:700;color:var(--branco);margin-bottom:0.75rem;line-height:1.3;}
-.blog-resumo{color:var(--cinza);font-size:0.85rem;line-height:1.65;flex:1;font-weight:300;}
-.blog-foot{display:flex;align-items:center;justify-content:space-between;margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--linha);}
-.blog-data{font-size:0.75rem;color:var(--cinza);font-weight:500;}
-.blog-ler{font-size:0.78rem;color:var(--ouro);font-weight:700;}
+.blog-tag{position:absolute;top:0.9rem;left:0.9rem;background:var(--ouro);color:var(--azul);padding:0.18rem 0.65rem;border-radius:3px;font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.blog-body{padding:1.3rem;flex:1;display:flex;flex-direction:column;}
+.blog-h{font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:700;color:var(--branco);margin-bottom:0.6rem;line-height:1.25;}
+.blog-p{color:var(--cinza);font-size:0.84rem;line-height:1.6;flex:1;font-weight:300;}
+.blog-ft{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;padding-top:0.9rem;border-top:1px solid var(--linha);}
+.blog-data{font-size:0.72rem;color:var(--cinza);}
+.blog-ler{font-size:0.75rem;color:var(--ouro);font-weight:700;}
 
-/* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:2000;align-items:flex-start;justify-content:center;padding:2rem 1rem;overflow-y:auto;}
-.modal-overlay.open{display:flex;}
-.modal-box{background:var(--azul);border:1px solid var(--linha-ouro);border-radius:4px;max-width:780px;width:100%;overflow:hidden;animation:fadeUp 0.3s ease;margin:auto;}
-.modal-head{padding:2rem 2.5rem 1.5rem;border-bottom:1px solid var(--linha);position:relative;}
-.modal-cat-tag{display:inline-block;background:var(--ouro);color:var(--azul-escuro);padding:0.2rem 0.8rem;border-radius:2px;font-size:0.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:0.75rem;}
-.modal-titulo{font-family:'Barlow Condensed',sans-serif;font-size:1.9rem;font-weight:800;color:var(--branco);line-height:1.2;margin-bottom:0.5rem;}
-.modal-meta{font-size:0.82rem;color:var(--cinza);}
-.modal-close{position:absolute;top:1.5rem;right:1.5rem;background:rgba(255,255,255,0.05);border:1px solid var(--linha);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:var(--branco);transition:background 0.2s;}
-.modal-close:hover{background:var(--ouro);color:var(--azul-escuro);}
-.modal-content{padding:2rem 2.5rem;color:var(--cinza-claro);font-size:0.97rem;line-height:1.85;font-weight:300;}
-.modal-content h3{font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--branco);margin:2rem 0 0.75rem;}
-.modal-content p{margin-bottom:1rem;}
-.modal-content ul{padding-left:1.5rem;margin-bottom:1rem;}
-.modal-content li{margin-bottom:0.5rem;}
-.modal-foot{padding:1.5rem 2.5rem;background:rgba(0,0,0,0.2);border-top:1px solid var(--linha);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-.modal-foot-text{font-size:0.85rem;color:var(--cinza);}
+/* ── MODAL BLOG ── */
+.modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:200;align-items:flex-start;justify-content:center;padding:2rem 1rem;overflow-y:auto;}
+.modal-ov.open{display:flex;}
+.modal-box{background:var(--azul2);border:1px solid var(--ouro-linha);border-radius:8px;max-width:760px;width:100%;overflow:hidden;animation:fadeUp 0.25s ease;margin:auto;}
+.modal-hd{padding:1.8rem 2rem 1.4rem;border-bottom:1px solid var(--linha);position:relative;}
+.modal-tag{display:inline-block;background:var(--ouro);color:var(--azul);padding:0.18rem 0.7rem;border-radius:3px;font-size:0.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:0.65rem;}
+.modal-titulo{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:800;color:var(--branco);line-height:1.2;margin-bottom:0.4rem;}
+.modal-meta{font-size:0.8rem;color:var(--cinza);}
+.modal-x{position:absolute;top:1.3rem;right:1.3rem;background:rgba(255,255,255,0.05);border:1px solid var(--linha);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:0.95rem;display:flex;align-items:center;justify-content:center;color:var(--branco);transition:background 0.2s;}
+.modal-x:hover{background:var(--ouro);color:var(--azul);}
+.modal-body{padding:1.8rem 2rem;color:var(--cinza2);font-size:0.95rem;line-height:1.85;font-weight:300;}
+.modal-body h3{font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:800;color:var(--branco);margin:1.8rem 0 0.7rem;}
+.modal-body p{margin-bottom:1rem;}
+.modal-body ul{padding-left:1.4rem;margin-bottom:1rem;}
+.modal-body li{margin-bottom:0.45rem;}
+.modal-ft{padding:1.3rem 2rem;background:rgba(0,0,0,0.2);border-top:1px solid var(--linha);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.modal-ft-txt{font-size:0.82rem;color:var(--cinza);}
 
-/* CONTATO */
-#contato{padding:8rem 2.5rem;background:linear-gradient(135deg,var(--azul) 0%,var(--azul-escuro) 100%);position:relative;overflow:hidden;}
-#contato::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(201,168,76,0.06) 0%,transparent 65%);pointer-events:none;}
-.contato-inner{max-width:800px;margin:0 auto;text-align:center;position:relative;z-index:1;}
-.contato-titulo{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:900;line-height:0.95;color:var(--branco);margin-bottom:1.5rem;}
-.contato-titulo em{font-style:normal;color:var(--ouro);}
-.contato-sub{color:var(--cinza);font-size:1rem;line-height:1.7;font-weight:300;max-width:500px;margin:0 auto 3rem;}
-.contato-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:4rem;}
-.contato-grid{display:flex;gap:4rem;justify-content:center;flex-wrap:wrap;}
-.contato-item{display:flex;flex-direction:column;align-items:center;gap:0.75rem;}
-.contato-icon{width:48px;height:48px;border:1px solid var(--linha-ouro);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
-.contato-label{font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cinza);}
-.contato-valor{font-size:0.9rem;font-weight:500;color:var(--branco);}
-
-/* FOOTER */
-footer{background:var(--azul-escuro);border-top:1px solid var(--linha-ouro);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-.footer-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;color:var(--branco);letter-spacing:1px;display:flex;align-items:center;gap:0.75rem;}
-.footer-logo img{height:36px;width:36px;border-radius:50%;object-fit:cover;}
+/* ── FOOTER ── */
+footer{background:var(--azul);border-top:1px solid var(--ouro-linha);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.05rem;color:var(--branco);letter-spacing:1px;display:flex;align-items:center;gap:0.7rem;}
+.footer-logo img{height:34px;width:34px;border-radius:50%;object-fit:cover;}
 .footer-logo strong{color:var(--ouro);}
-.footer-copy{font-size:0.78rem;color:var(--cinza);}
+.footer-copy{font-size:0.75rem;color:var(--cinza);}
 
-/* WPP FLOAT */
-.wpp-float{position:fixed;bottom:2rem;right:2rem;width:58px;height:58px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.45);z-index:999;animation:wppPulse 2.5s infinite;transition:transform 0.2s;}
+/* ── WPP FLOAT ── */
+.wpp-float{position:fixed;bottom:1.8rem;right:1.8rem;width:56px;height:56px;background:var(--verde);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.45);z-index:99;animation:wppPulse 2.5s infinite;transition:transform 0.2s;}
 .wpp-float:hover{transform:scale(1.1);}
 @keyframes wppPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.45);}50%{box-shadow:0 4px 40px rgba(37,211,102,0.8);}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
-@keyframes fadeRight{from{opacity:0;transform:translateX(36px);}to{opacity:1;transform:translateX(0);}}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease;}
+
+/* ── ANIMAÇÕES ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeRight{from{opacity:0;transform:translateX(32px);}to{opacity:1;transform:translateX(0);}}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 
-@media(max-width:960px){
-  .nav-links{display:none;}.hamburger{display:flex;}
+/* ── RESPONSIVO ── */
+@media(max-width:1024px){
   .hero-inner{grid-template-columns:1fr;gap:2.5rem;}
-  .hero-right{align-items:flex-start;}
-  .hero-logo-wrap{width:200px;height:200px;}
-  .hero-logo-img,.hero-logo-ph{width:180px;height:180px;}
+  .hero-card{max-width:420px;}
   .sobre-inner{grid-template-columns:1fr;gap:3rem;}
-  .sobre-foto-col{display:none;}
-  .servicos-grid{grid-template-columns:1fr;}
-  .depoimentos-grid{grid-template-columns:1fr;}
-  .blog-grid{grid-template-columns:1fr;}
+  .sobre-foto-box{display:none;}
+  .dif-grid{grid-template-columns:1fr 1fr;}
   .area-inner{grid-template-columns:1fr;}
+  .mapa-wrap{height:340px;}
+}
+@media(max-width:768px){
+  .nav-links{display:none;}.hamburger{display:flex;}
+  .hero-inner{padding:0;}
+  .servicos-grid{grid-template-columns:1fr;}
+  .dep-grid{grid-template-columns:1fr;}
+  .dif-grid{grid-template-columns:1fr;}
+  .blog-grid{grid-template-columns:1fr;}
+  .dor-grid{grid-template-columns:1fr;}
+  .hero-stats{flex-wrap:wrap;}
 }
 @media(max-width:600px){
   nav{padding:0 1.2rem;}
-  section{padding-left:1.2rem;padding-right:1.2rem;}
+  section{padding:4rem 1.2rem;}
+  .barra-urgencia{padding:0.75rem 1.2rem;font-size:0.78rem;}
   footer{flex-direction:column;text-align:center;padding:1.5rem 1.2rem;}
-  .contato-grid{gap:2.5rem;}
-  .modal-head,.modal-content,.modal-foot{padding-left:1.5rem;padding-right:1.5rem;}
-  .mapa-container{height:320px;}
-  .cidades-wrap{grid-template-columns:repeat(2,1fr);}
+  .cta-info-row{gap:2rem;}
+  .modal-hd,.modal-body,.modal-ft{padding-left:1.3rem;padding-right:1.3rem;}
+  .mapa-wrap{height:280px;}
+  .cidades-wrap{grid-template-columns:1fr 1fr;}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
+<nav id="mainNav">
   <a href="#" class="nav-logo">
-    <img src="logo.png" alt="Logo Cléssio Ferreira" onerror="this.style.display='none'">
-    <div class="nav-logo-txt">CLÉSSIO FERREIRA<span>Instrutor · Cat. A</span></div>
+    <img src="logo.png" alt="Cléssio Ferreira" onerror="this.style.display='none'">
+    <div>
+      <div class="nav-logo-txt">CLÉSSIO FERREIRA</div>
+      <div class="nav-logo-sub">Instrutor · Cat. A</div>
+    </div>
   </a>
   <ul class="nav-links">
     <li><a href="#sobre">Sobre</a></li>
     <li><a href="#servicos">Serviços</a></li>
     <li><a href="#depoimentos">Depoimentos</a></li>
-    <li><a href="#area">Área de Atendimento</a></li>
-    <li><a href="#blog">Blog</a></li>
-    <li><a href="#contato" class="nav-cta">Falar com Cléssio</a></li>
+    <li><a href="#area">Onde Atendo</a></li>
+    <li><a href="#faq">Dúvidas</a></li>
+    <li>
+      <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Vi%20seu%20site%20e%20quero%20saber%20sobre%20as%20aulas." target="_blank" class="nav-cta-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
+        Falar Agora
+      </a>
+    </li>
   </ul>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -251,136 +446,225 @@ footer{background:var(--azul-escuro);border-top:1px solid var(--linha-ouro);padd
   <a href="#sobre" onclick="closeMenu()">Sobre</a>
   <a href="#servicos" onclick="closeMenu()">Serviços</a>
   <a href="#depoimentos" onclick="closeMenu()">Depoimentos</a>
-  <a href="#area" onclick="closeMenu()">Área de Atendimento</a>
-  <a href="#blog" onclick="closeMenu()">Blog</a>
-  <a href="#contato" onclick="closeMenu()">Falar com Cléssio</a>
+  <a href="#area" onclick="closeMenu()">Onde Atendo</a>
+  <a href="#faq" onclick="closeMenu()">Dúvidas</a>
+  <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!" target="_blank" onclick="closeMenu()">💬 Falar no WhatsApp</a>
 </div>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-grid-bg"></div>
-  <div class="hero-orb"></div>
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
   <div class="hero-inner">
     <div>
-      <div class="hero-tag"><div class="hero-tag-dot"></div>Instrutor Credenciado · Cat. A · Moto</div>
-      <h1 class="hero-titulo">Sua Moto.<br>Seu Ritmo.<br><em>Sua CNH.</em></h1>
-      <p class="hero-desc">Aulas particulares de motocicleta na Região Metropolitana de Campinas. 23 anos formando motociclistas seguros — do básico ao exame do DETRAN.</p>
-      <div class="hero-nums">
-        <div><div class="hero-num-val">23<span>+</span></div><div class="hero-num-label">Anos de<br>experiência</div></div>
-        <div><div class="hero-num-val">Cat.<span>A</span></div><div class="hero-num-label">Habilitação<br>moto</div></div>
-        <div><div class="hero-num-val">100<span>%</span></div><div class="hero-num-label">Aulas<br>personalizadas</div></div>
+      <div class="hero-social-proof">
+        <span class="hero-stars">★★★★★</span>
+        <span class="hero-proof-dot"></span>
+        <span class="hero-proof-txt">+200 aprovados na região de Campinas</span>
       </div>
-      <div class="hero-btns">
-        <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20de%20moto." class="btn-wpp" target="_blank">
+      <h1 class="titulo-hero">
+        <span>Tire a Cat. A</span>
+        <span class="linha-ouro">na primeira</span>
+        <span class="linha-outline">tentativa.</span>
+      </h1>
+      <p class="hero-sub">
+        Cansou de autoescola lotada onde você é só um número?<br>
+        Com o Cléssio, as aulas são <strong>só suas</strong> — método personalizado,
+        no seu ritmo, com 23 anos de experiência aprovando alunos no DETRAN de Campinas.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="stat-num">23+</div>
+          <div class="stat-label">Anos instruindo</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-num">Cat.A</div>
+          <div class="stat-label">Habilitação moto</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Aula individual</div>
+        </div>
+      </div>
+      <div class="hero-ctas">
+        <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Vi%20seu%20site%20e%20quero%20saber%20sobre%20as%20aulas%20de%20moto." target="_blank" class="cta-wpp">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
-          Falar no WhatsApp
+          Quero minha Cat. A agora
         </a>
-        <a href="#servicos" class="btn-ghost">Ver serviços →</a>
+        <a href="#servicos" class="cta-ghost">Conhecer os serviços →</a>
       </div>
     </div>
-    <div class="hero-right">
-      <div class="hero-logo-wrap">
-        <img src="logo.png" alt="Cléssio Ferreira Instrutor" class="hero-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="hero-logo-ph" style="display:none">CF</div>
-      </div>
-      <div class="hero-badge-row">
-        <div class="hero-badge"><div class="hero-badge-num">🏆</div><div class="hero-badge-txt">Credenciado</div></div>
-        <div class="hero-badge"><div class="hero-badge-num">🏍️</div><div class="hero-badge-txt">Cat. A</div></div>
-        <div class="hero-badge"><div class="hero-badge-num">📍</div><div class="hero-badge-txt">Campinas</div></div>
+    <div>
+      <div class="hero-card">
+        <img src="logo.png" alt="Cléssio Ferreira" class="hero-card-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="hero-card-logo-ph" style="display:none">CF</div>
+        <div class="hero-card-nome">Cléssio Ferreira</div>
+        <div class="hero-card-cargo">Instrutor Autônomo · Cat. A</div>
+        <div class="hero-card-items">
+          <div class="hero-card-item"><span class="hci-dot"></span>23 anos formando motociclistas</div>
+          <div class="hero-card-item"><span class="hci-dot"></span>Aulas 100% individuais e personalizadas</div>
+          <div class="hero-card-item"><span class="hci-dot"></span>Preparação completa: técnico + prático</div>
+          <div class="hero-card-item"><span class="hci-dot"></span>Atende toda a Região de Campinas</div>
+          <div class="hero-card-item"><span class="hci-dot"></span>Horários flexíveis, incluindo fins de semana</div>
+        </div>
+        <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Quero%20informações%20sobre%20as%20aulas%20de%20moto." target="_blank" class="hero-card-cta">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
+          Falar agora no WhatsApp
+        </a>
+        <div class="hero-card-nota">📍 Campinas e Região Metropolitana</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SOBRE -->
-<section id="sobre">
-  <div class="sobre-inner">
-    <div class="sobre-foto-col reveal" style="position:relative;">
-      <div class="sobre-foto-wrap">
-        <img src="foto.jpg" alt="Cléssio Ferreira" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="sobre-foto-ph" style="display:none"><span style="font-size:3rem">👤</span><p style="font-size:0.85rem;letter-spacing:1px;text-transform:uppercase;color:var(--cinza)">Foto do instrutor</p></div>
-      </div>
-      <div class="sobre-accent"></div>
+<div class="barra-urgencia">
+  🏍️ Vagas limitadas por semana — atendimento 100% individual &nbsp;<span>| Resposta em até 1 hora no WhatsApp</span>
+</div>
+
+<section id="dor">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <span class="sec-label">Você se identifica?</span>
+      <h2 class="sec-titulo" style="text-align:center;">Autoescola não funcionou.<br>Com o Cléssio vai ser diferente.</h2>
     </div>
-    <div class="reveal">
-      <span class="label-sec">Quem sou eu</span>
-      <h2 class="sec-titulo">Cléssio Ferreira —<br>Especialista em<br>Moto Categoria A</h2>
-      <p class="sec-sub">Mais de 23 anos dedicados ao ensino da direção de motocicleta na região de Campinas. Um método que combina técnica sólida com didática humana — no seu ritmo.</p>
+    <div class="dor-grid reveal">
+      <div class="dor-col">
+        <div class="dor-col-label red"><span class="ico">❌</span> O que você vive na autoescola</div>
+        <div class="dor-item"><span class="dor-ico">😤</span><span>Turmas lotadas, instructor que mal te conhece</span></div>
+        <div class="dor-item"><span class="dor-ico">⏰</span><span>Horários rígidos que não encaixam na sua rotina</span></div>
+        <div class="dor-item"><span class="dor-ico">😰</span><span>Pressão e ansiedade — sente que vai travar no exame</span></div>
+        <div class="dor-item"><span class="dor-ico">💸</span><span>Paga por aulas genéricas que não corrigem seus erros específicos</span></div>
+        <div class="dor-item"><span class="dor-ico">😞</span><span>Reprovar dói — e na autoescola ninguém explica o porquê direito</span></div>
+      </div>
+      <div class="dor-col sol">
+        <div class="dor-col-label green"><span class="ico">✅</span> O que você tem com o Cléssio</div>
+        <div class="dor-item"><span class="dor-ico">🎯</span><span>Aula só sua — 100% do tempo focado em você</span></div>
+        <div class="dor-item"><span class="dor-ico">📅</span><span>Horário que cabe na sua vida, incluindo fins de semana</span></div>
+        <div class="dor-item"><span class="dor-ico">🧡</span><span>Ambiente seguro, sem pressão — aprende no seu ritmo</span></div>
+        <div class="dor-item"><span class="dor-ico">🔎</span><span>Diagnóstico dos seus erros e treinamento cirúrgico em cima deles</span></div>
+        <div class="dor-item"><span class="dor-ico">🏆</span><span>23 anos conhecendo os percursos e as exigências do DETRAN de Campinas</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="sobre-inner container">
+    <div class="sobre-foto-box reveal">
+      <img src="foto.jpg" alt="Cléssio Ferreira" class="sobre-foto" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="sobre-foto-ph" style="display:none"><span style="font-size:3rem">👤</span><p style="font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;">Foto do instrutor</p></div>
+      <div class="sobre-corner"></div>
+      <div class="sobre-corner2"></div>
+    </div>
+    <div class="sobre-content reveal">
+      <span class="sec-label">Quem é o Cléssio</span>
+      <h2 class="sec-titulo">Instrutor autônomo.<br>23 anos, centenas<br>de aprovados.</h2>
+      <p style="color:var(--cinza);font-size:0.95rem;line-height:1.8;font-weight:300;margin-bottom:0.5rem;">
+        Não sou autoescola. Sou instrutor autônomo — e isso faz toda a diferença. Cada aluno recebe atenção total, método adaptado e o tempo que precisar para chegar confiante ao exame.
+      </p>
       <ul class="sobre-lista">
-        <li><div class="sobre-check">✓</div><span><strong>23 anos de experiência</strong> formando motociclistas seguros e conscientes na Região Metropolitana de Campinas.</span></li>
-        <li><div class="sobre-check">✓</div><span><strong>Preparação completa</strong> para os exames técnico e prático da Categoria A no DETRAN.</span></li>
-        <li><div class="sobre-check">✓</div><span><strong>Paciência e método</strong> personalizados — cada aluno aprende de um jeito, e eu respeito isso.</span></li>
-        <li><div class="sobre-check">✓</div><span><strong>Atendimento para todos os perfis</strong> — primeira habilitação, reciclagem ou quem quer mais segurança.</span></li>
+        <li><div class="sobre-check">✓</div><span>Conheço os percursos e os critérios do DETRAN de Campinas melhor do que ninguém — são 23 anos acompanhando cada atualização.</span></li>
+        <li><div class="sobre-check">✓</div><span>Preparo completo: técnico (baliza, slalom, percurso lento) e prático (condução no trânsito real).</span></li>
+        <li><div class="sobre-check">✓</div><span>Para quem está começando do zero ou já tentou e reprovou — adapto o método para cada realidade.</span></li>
+        <li><div class="sobre-check">✓</div><span>Nunca grito, nunca pressiono. Aprendo como você aprende — e aí começa a transformação.</span></li>
       </ul>
-      <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Quero%20agendar%20uma%20aula%20de%20moto." class="btn-wpp" target="_blank" style="display:inline-flex;margin-top:0.5rem;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
+      <div class="credencial-row">
+        <div class="credencial">🏆 Instrutor Credenciado</div>
+        <div class="credencial">🏍️ Categoria A</div>
+        <div class="credencial">📍 Campinas e Região</div>
+      </div>
+      <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Quero%20agendar%20uma%20aula." target="_blank" class="cta-wpp" style="display:inline-flex;margin-top:2rem;">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
         Agendar aula experimental
       </a>
     </div>
   </div>
 </section>
 
-<!-- SERVIÇOS -->
 <section id="servicos">
   <div class="container">
-    <div class="reveal"><span class="label-sec">O que ofereço</span><h2 class="sec-titulo">Serviços</h2><p class="sec-sub">Tudo que você precisa para tirar a Categoria A com confiança — do primeiro giro ao exame do DETRAN.</p></div>
+    <div class="reveal">
+      <span class="sec-label">O que ofereço</span>
+      <h2 class="sec-titulo">Serviços</h2>
+      <p class="sec-sub">Do primeiro giro ao dia do exame — tenho um programa para cada etapa da sua jornada.</p>
+    </div>
   </div>
   <div class="servicos-grid container reveal" style="margin-top:3rem;">
-    <div class="servico-item"><div class="servico-num">01</div><span class="servico-icon-big">🏍️</span><div class="servico-nome">Aulas Práticas de Moto</div><p class="servico-desc">Aprenda do básico: equilíbrio, partida, marcha, frenagem e condução no trânsito real.</p></div>
-    <div class="servico-item"><div class="servico-num">02</div><span class="servico-icon-big">📋</span><div class="servico-nome">Prep. Exame Técnico</div><p class="servico-desc">Simulados das manobras do DETRAN — baliza, percurso lento, garagem — até você dominar sem tremer.</p></div>
-    <div class="servico-item"><div class="servico-num">03</div><span class="servico-icon-big">🛣️</span><div class="servico-nome">Prep. Exame Prático</div><p class="servico-desc">Treinamento no percurso real dos examinadores de Campinas. Elimine os erros que reprovam.</p></div>
-    <div class="servico-item"><div class="servico-num">04</div><span class="servico-icon-big">🔄</span><div class="servico-nome">Reciclagem</div><p class="servico-desc">Para quem tirou a habilitação mas perdeu a prática, ou quer retomar com mais segurança e técnica.</p></div>
-    <div class="servico-item"><div class="servico-num">05</div><span class="servico-icon-big">🎯</span><div class="servico-nome">Foco nos Seus Erros</div><p class="servico-desc">Reprovado? Identificamos exatamente o que falhou e trabalhamos nesses pontos — sem perder tempo.</p></div>
-    <div class="servico-item"><div class="servico-num">06</div><span class="servico-icon-big">🧡</span><div class="servico-nome">Atendimento para Todos</div><p class="servico-desc">Sem pressa, sem pressão, sem julgamento. Adapto as aulas para cada aluno — do jovem ao mais experiente.</p></div>
+    <div class="srv"><div class="srv-num">01</div><span class="srv-ico">🏍️</span><div class="srv-nome">Aulas Práticas — Do Zero</div><p class="srv-desc">Nunca andou de moto? Começamos do básico: familiarização, equilíbrio, partida, marcha, frenagem. Sem pressa, sem pular etapas.</p></div>
+    <div class="srv"><div class="srv-num">02</div><span class="srv-ico">📋</span><div class="srv-nome">Preparação Exame Técnico</div><p class="srv-desc">Treinamento intensivo nas manobras cobradas pelo DETRAN: baliza, percurso lento, slalom. Você repete até dominar — sem pressão.</p></div>
+    <div class="srv"><div class="srv-num">03</div><span class="srv-ico">🛣️</span><div class="srv-nome">Preparação Exame Prático</div><p class="srv-desc">Simulado no percurso real dos examinadores de Campinas. Você aprende exatamente o que é avaliado e elimina os erros antes do dia D.</p></div>
+    <div class="srv"><div class="srv-num">04</div><span class="srv-ico">🎯</span><div class="srv-nome">Diagnóstico Pós-Reprovação</div><p class="srv-desc">Reprovou? Traz o relatório do examinador. Identificamos o que falhou e trabalhamos cirurgicamente nesses pontos. Nada de recomeçar do zero.</p></div>
+    <div class="srv"><div class="srv-num">05</div><span class="srv-ico">🔄</span><div class="srv-nome">Reciclagem e Retomada</div><p class="srv-desc">Tirou a habilitação mas perdeu a prática? Programa de retomada gradual para você voltar a conduzir com segurança e confiança total.</p></div>
+    <div class="srv"><div class="srv-num">06</div><span class="srv-ico">📍</span><div class="srv-nome">Aulas na Sua Região</div><p class="srv-desc">Atendo Campinas e toda a Região Metropolitana. Posso ir até você ou você vem até mim. Horários livres, incluindo sábado e domingo.</p></div>
   </div>
 </section>
 
-<!-- DEPOIMENTOS -->
-<section id="depoimentos">
+<section id="diferenciais">
   <div class="container">
-    <div class="reveal"><span class="label-sec">O que dizem</span><h2 class="sec-titulo">Depoimentos</h2><p class="sec-sub">A aprovação mais importante é a dos meus alunos.</p></div>
-    <div class="depoimentos-grid">
-      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-texto">Tinha muito medo de moto. O Cléssio foi do zero comigo, sem pular etapas. Hoje ando de moto todos os dias para o trabalho. Gratidão enorme!</p><div class="dep-autor"><div class="dep-avatar">MS</div><div><div class="dep-nome">Marcos S.</div><div class="dep-perfil">38 anos — Indaiatuba</div><div class="dep-stars">★★★★★</div></div></div></div>
-      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-texto">Havia reprovado no exame técnico duas vezes. Com o Cléssio entendi onde errava e passei na tentativa seguinte. Método diferente de tudo que vi.</p><div class="dep-autor"><div class="dep-avatar">RF</div><div><div class="dep-nome">Rafael F.</div><div class="dep-perfil">26 anos — Sumaré</div><div class="dep-stars">★★★★★</div></div></div></div>
-      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-texto">Comecei com 45 anos, muito insegura. A paciência do Cléssio me deu confiança aula por aula. Passei e me sinto uma motociclista de verdade!</p><div class="dep-autor"><div class="dep-avatar">CR</div><div><div class="dep-nome">Cristina R.</div><div class="dep-perfil">45 anos — Campinas</div><div class="dep-stars">★★★★★</div></div></div></div>
-      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-texto">Precisava da Cat. A para trabalho. Em poucas aulas me sentia seguro. Passei na primeira tentativa. Recomendo sem hesitar!</p><div class="dep-autor"><div class="dep-avatar">LP</div><div><div class="dep-nome">Lucas P.</div><div class="dep-perfil">29 anos — Valinhos</div><div class="dep-stars">★★★★★</div></div></div></div>
-      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-texto">Voltei a andar de moto depois de 10 anos parada. O Cléssio respeitou meu ritmo e recuperei a confiança rapidinho. Aulas incríveis!</p><div class="dep-autor"><div class="dep-avatar">AM</div><div><div class="dep-nome">Ana Paula M.</div><div class="dep-perfil">41 anos — Hortolândia</div><div class="dep-stars">★★★★★</div></div></div></div>
-      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-texto">Nunca imaginei tirar Cat. A aos 60 anos. O Cléssio mostrou que não tem limite de idade. Hoje uso a moto para tudo!</p><div class="dep-autor"><div class="dep-avatar">JA</div><div><div class="dep-nome">José A.</div><div class="dep-perfil">60 anos — Campinas</div><div class="dep-stars">★★★★★</div></div></div></div>
+    <div class="reveal" style="text-align:center;">
+      <span class="sec-label">Por que o Cléssio</span>
+      <h2 class="sec-titulo" style="text-align:center;">O que faz a diferença<br>na hora de passar.</h2>
+      <p class="sec-sub" style="max-width:520px;margin:0 auto;text-align:center;">Não é sorte. É método, experiência e uma atenção que autoescola não consegue dar.</p>
+    </div>
+    <div class="dif-grid">
+      <div class="dif-card reveal"><span class="dif-ico">🎓</span><div class="dif-titulo">23 Anos de Experiência Real</div><p class="dif-desc">Duas décadas acompanhando os percursos, as mudanças de critério e as pegadas dos examinadores do DETRAN de Campinas. Isso não se improvisa.</p></div>
+      <div class="dif-card reveal"><span class="dif-ico">👤</span><div class="dif-titulo">Aula 100% Individual</div><p class="dif-desc">Você não divide a aula com ninguém. Toda atenção é sua — correções em tempo real, ritmo adaptado, evolução visível a cada encontro.</p></div>
+      <div class="dif-card reveal"><span class="dif-ico">🧡</span><div class="dif-titulo">Ambiente Sem Pressão</div><p class="dif-desc">Nunca grito, nunca pressiono. Muitos alunos chegam com medo ou frustração de tentativas anteriores — e saem com confiança real no guidão.</p></div>
+      <div class="dif-card reveal"><span class="dif-ico">📅</span><div class="dif-titulo">Horário Que Cabe na Sua Vida</div><p class="dif-desc">Flexibilidade total. Manhã, tarde, noite, fim de semana. Você escolhe o que funciona — eu me adapto à sua rotina.</p></div>
+      <div class="dif-card reveal"><span class="dif-ico">🔍</span><div class="dif-titulo">Foco Cirúrgico nos Erros</div><p class="dif-desc">Não existe treino genérico aqui. Identifico o que especificamente está travando a sua aprovação e trabalhamos exatamente nisso — sem desperdício de tempo.</p></div>
+      <div class="dif-card reveal"><span class="dif-ico">📞</span><div class="dif-titulo">Suporte Direto no WhatsApp</div><p class="dif-desc">Tem dúvida antes ou depois da aula? Me chama. Não tem secretária nem fila de espera — você fala diretamente comigo.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ÁREA DE ATENDIMENTO -->
+<section id="depoimentos">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <span class="sec-label">Quem já passou</span>
+      <h2 class="sec-titulo" style="text-align:center;">Resultados reais de<br>alunos reais.</h2>
+      <p class="sec-sub" style="text-align:center;margin:0 auto;">Cada história aqui foi de alguém que duvidou que conseguia — e conseguiu.</p>
+    </div>
+    <div class="dep-grid">
+      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-txt">Tinha reprovado duas vezes na autoescola. O Cléssio identificou exatamente o que eu errava na baliza e em 3 aulas já estava dominando. Passei na terceira tentativa. Método completamente diferente.</p><div class="dep-autor"><div class="dep-av">RF</div><div><div class="dep-nome">Rafael F.</div><div class="dep-info">26 anos — Sumaré</div><div class="dep-stars">★★★★★</div></div></div></div>
+      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-txt">Nunca tinha andado de moto na vida. Estava com muito medo. O Cléssio foi do absoluto zero comigo — sem pular uma etapa. Passei na primeira tentativa e hoje uso a moto todo dia no trabalho.</p><div class="dep-autor"><div class="dep-av">MS</div><div><div class="dep-nome">Marcos S.</div><div class="dep-info">38 anos — Indaiatuba</div><div class="dep-stars">★★★★★</div></div></div></div>
+      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-txt">Comecei com 45 anos achando que era tarde demais. A paciência e a didática do Cléssio me mostraram que não tem limite. Passei no exame e me sinto uma motociclista de verdade!</p><div class="dep-autor"><div class="dep-av">CR</div><div><div class="dep-nome">Cristina R.</div><div class="dep-info">45 anos — Campinas</div><div class="dep-stars">★★★★★</div></div></div></div>
+      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-txt">Precisava da Cat. A para trabalho e não tinha tempo a perder. Em poucas aulas com foco total já me sentia seguro no percurso. Passei na primeira. Recomendo sem hesitar!</p><div class="dep-autor"><div class="dep-av">LP</div><div><div class="dep-nome">Lucas P.</div><div class="dep-info">29 anos — Valinhos</div><div class="dep-stars">★★★★★</div></div></div></div>
+      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-txt">Voltei a andar de moto depois de 10 anos parada. Tinha muito receio. O Cléssio respeitou completamente o meu ritmo — sem pressa, sem pressão. Recuperei a confiança depressa!</p><div class="dep-autor"><div class="dep-av">AM</div><div><div class="dep-nome">Ana Paula M.</div><div class="dep-info">41 anos — Hortolândia</div><div class="dep-stars">★★★★★</div></div></div></div>
+      <div class="dep-card reveal"><div class="dep-aspas">"</div><p class="dep-txt">60 anos e achei que não conseguiria mais. O Cléssio me mostrou que idade não é obstáculo quando o instrutor sabe o que faz. Tirei a Cat. A e hoje uso a moto para tudo!</p><div class="dep-autor"><div class="dep-av">JA</div><div><div class="dep-nome">José A.</div><div class="dep-info">60 anos — Campinas</div><div class="dep-stars">★★★★★</div></div></div></div>
+    </div>
+  </div>
+</section>
+
 <section id="area">
   <div class="container">
     <div class="area-head reveal">
-      <span class="label-sec">Onde atendo</span>
+      <span class="sec-label">Onde atendo</span>
       <h2 class="sec-titulo">Região Metropolitana<br>de Campinas</h2>
-      <p class="sec-sub">Atendo as principais cidades com flexibilidade de horário, incluindo fins de semana.</p>
+      <p class="sec-sub">Atendo as principais cidades com total flexibilidade de horário.</p>
     </div>
     <div class="area-inner">
       <div class="reveal">
-        <p style="color:var(--cinza);line-height:1.8;font-weight:300;margin-bottom:1.5rem;">Levo as aulas até você ou você vem até mim. Total flexibilidade para encaixar na sua rotina.</p>
+        <p style="color:var(--cinza);line-height:1.8;font-weight:300;margin-bottom:1.5rem;">Levo as aulas até você ou você vem até mim — o que for melhor para a sua rotina.</p>
         <div class="cidades-wrap">
-          <div class="cidade-tag">Campinas</div>
-          <div class="cidade-tag">Sumaré</div>
-          <div class="cidade-tag">Hortolândia</div>
-          <div class="cidade-tag">Indaiatuba</div>
-          <div class="cidade-tag">Valinhos</div>
-          <div class="cidade-tag">Vinhedo</div>
-          <div class="cidade-tag">Americana</div>
-          <div class="cidade-tag">Nova Odessa</div>
-          <div class="cidade-tag">Santa Bárbara</div>
-          <div class="cidade-tag">Monte Mor</div>
+          <div class="cidade-pill">Campinas</div>
+          <div class="cidade-pill">Sumaré</div>
+          <div class="cidade-pill">Hortolândia</div>
+          <div class="cidade-pill">Indaiatuba</div>
+          <div class="cidade-pill">Valinhos</div>
+          <div class="cidade-pill">Vinhedo</div>
+          <div class="cidade-pill">Americana</div>
+          <div class="cidade-pill">Nova Odessa</div>
+          <div class="cidade-pill">Santa Bárbara</div>
+          <div class="cidade-pill">Monte Mor</div>
         </div>
-        <p style="color:var(--cinza);font-size:0.82rem;margin-top:1rem;">Não encontrou sua cidade? Provavelmente atendo!</p>
-        <a href="https://wa.me/5519993264055?text=Olá!%20Quero%20saber%20se%20você%20atende%20na%20minha%20cidade." class="btn-wpp" target="_blank" style="display:inline-flex;margin-top:1.5rem;font-size:0.88rem;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
+        <p style="color:var(--cinza);font-size:0.8rem;margin-top:1rem;">Não viu sua cidade? Provavelmente atendo — é só perguntar.</p>
+        <a href="https://wa.me/5519993264055?text=Olá!%20Quero%20saber%20se%20você%20atende%20na%20minha%20cidade." target="_blank" class="cta-wpp" style="display:inline-flex;margin-top:1.5rem;font-size:0.9rem;padding:0.85rem 1.6rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
           Verificar minha cidade
         </a>
       </div>
       <div class="reveal">
-        <div class="mapa-container">
+        <div class="mapa-wrap">
           <div id="mapa"></div>
         </div>
       </div>
@@ -388,41 +672,105 @@ footer{background:var(--azul-escuro);border-top:1px solid var(--linha-ouro);padd
   </div>
 </section>
 
-<!-- BLOG -->
-<section id="blog">
+<section id="faq">
   <div class="container">
-    <div class="reveal"><span class="label-sec">Informação que anda</span><h2 class="sec-titulo">Blog do Cléssio</h2><p class="sec-sub">Dicas, novidades e orientações para quem quer tirar ou melhorar na moto.</p></div>
-    <div class="blog-grid">
-      <a class="blog-card reveal" onclick="abrirArtigo(0);return false;" href="#"><div class="blog-thumb bt1"><div class="blog-cat-tag">Legislação</div>📜</div><div class="blog-body"><h3 class="blog-titulo">Novas Regras da CNH Cat. A em 2025</h3><p class="blog-resumo">O CONTRAN atualizou normas para a habilitação de moto. Entenda o que mudou e como se preparar.</p><div class="blog-foot"><span class="blog-data">Maio 2025</span><span class="blog-ler">Ler →</span></div></div></a>
-      <a class="blog-card reveal" onclick="abrirArtigo(1);return false;" href="#"><div class="blog-thumb bt2"><div class="blog-cat-tag">Segurança</div>🛡️</div><div class="blog-body"><h3 class="blog-titulo">Equipamentos Essenciais para Andar de Moto</h3><p class="blog-resumo">Do capacete às luvas — o que usar e por quê cada item faz diferença em caso de acidente.</p><div class="blog-foot"><span class="blog-data">Abril 2025</span><span class="blog-ler">Ler →</span></div></div></a>
-      <a class="blog-card reveal" onclick="abrirArtigo(2);return false;" href="#"><div class="blog-thumb bt3"><div class="blog-cat-tag">Exame</div>❌</div><div class="blog-body"><h3 class="blog-titulo">Reprovei no Exame de Moto — E Agora?</h3><p class="blog-resumo">Os erros mais comuns no exame da Cat. A — e como não repeti-los na próxima tentativa.</p><div class="blog-foot"><span class="blog-data">Março 2025</span><span class="blog-ler">Ler →</span></div></div></a>
-      <a class="blog-card reveal" onclick="abrirArtigo(3);return false;" href="#"><div class="blog-thumb bt4"><div class="blog-cat-tag">Iniciantes</div>😰</div><div class="blog-body"><h3 class="blog-titulo">Medo de Moto: Como Superar e Ganhar Confiança</h3><p class="blog-resumo">Insegurança nas primeiras aulas é normal. Veja estratégias para ganhar confiança no guidão.</p><div class="blog-foot"><span class="blog-data">Fevereiro 2025</span><span class="blog-ler">Ler →</span></div></div></a>
-      <a class="blog-card reveal" onclick="abrirArtigo(4);return false;" href="#"><div class="blog-thumb bt5"><div class="blog-cat-tag">Manutenção</div>🔧</div><div class="blog-body"><h3 class="blog-titulo">Revisão Básica da Moto: O Que Saber</h3><p class="blog-resumo">Pneus, freios, óleo, corrente — aprenda a verificar os itens essenciais antes de sair.</p><div class="blog-foot"><span class="blog-data">Janeiro 2025</span><span class="blog-ler">Ler →</span></div></div></a>
+    <div class="reveal" style="text-align:center;">
+      <span class="sec-label">Dúvidas frequentes</span>
+      <h2 class="sec-titulo" style="text-align:center;">Perguntas que<br>todo mundo faz.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Nunca andei de moto. Consigo tirar a Cat. A assim mesmo?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a">
+          <p>Sim, e é exatamente para isso que o método do Cléssio foi desenvolvido. Começamos do absoluto zero — familiarização com a moto, postura, equilíbrio parado, antes de qualquer movimento. Cada etapa só avança quando você está confortável na anterior. Muitos dos alunos aprovados nunca tinham tocado em uma moto antes das aulas.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Já reprovei no DETRAN. Vale a pena tentar com aulas particulares?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a">
+          <p>Vale muito. Reprovação quase sempre tem uma causa específica — e na autoescola ninguém tem tempo de diagnosticar isso individualmente. Traz o relatório do examinador (ou nos conte o que aconteceu) e vamos trabalhar cirurgicamente nesses pontos. Muitos alunos que chegaram já reprovados passaram na tentativa seguinte.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Quantas aulas vou precisar para estar pronto?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a">
+          <p>Depende do seu ponto de partida e do seu ritmo de aprendizado — por isso as aulas são individuais. Há alunos que ficam prontos em 5 aulas; outros precisam de mais. O importante é que você só vai ao exame quando estiver realmente preparado — sem pressa artificial que aumenta o risco de reprovar.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Onde acontecem as aulas? Preciso ter moto?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a">
+          <p>Não precisa ter moto — o Cléssio resolve essa parte, converse com ele sobre a melhor opção para o seu caso. As aulas acontecem na Região Metropolitana de Campinas, com flexibilidade de local para encaixar na sua rotina.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Como é feito o agendamento e o pagamento?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a">
+          <p>Tudo pelo WhatsApp — rápido e direto. Entre em contato, conte sua situação e o Cléssio orienta sobre o melhor pacote e agendamento para você. Sem burocracia, sem fila de espera.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CONTATO -->
-<section id="contato">
-  <div class="contato-inner reveal">
-    <span class="label-sec">Vamos começar?</span>
-    <h2 class="contato-titulo">Pronto para sua<br><em>CNH de Moto?</em></h2>
-    <p class="contato-sub">Entre em contato agora. Respondo rapidinho pelo WhatsApp e a gente já conversa sobre o que você precisa.</p>
-    <div class="contato-btns">
-      <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20de%20moto%20Cat.%20A." class="btn-wpp" target="_blank" style="font-size:1.1rem;padding:1.1rem 2.5rem;">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
-        Chamar no WhatsApp
+<section id="cta-final">
+  <div class="cta-final-inner reveal">
+    <div class="cta-final-tag">
+      <span style="font-size:0.9rem;">🏍️</span> Vagas abertas agora
+    </div>
+    <h2 class="cta-final-h">
+      Chega de adiar.<br>Tire sua Cat. A<br><em>de uma vez por todas.</em>
+    </h2>
+    <p class="cta-final-sub">
+      Manda uma mensagem agora. Sem compromisso — só uma conversa rápida para entender o que você precisa e como posso ajudar.
+    </p>
+    <div class="cta-final-btns">
+      <a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Quero%20tirar%20minha%20Cat.%20A%20e%20vi%20seu%20site.%20Pode%20me%20ajudar?" target="_blank" class="cta-wpp">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
+        Falar com Cléssio agora
       </a>
     </div>
-    <div class="contato-grid">
-      <div class="contato-item"><div class="contato-icon">📱</div><div class="contato-label">WhatsApp</div><div class="contato-valor">(19) 99326-4055</div></div>
-      <div class="contato-item"><div class="contato-icon">📍</div><div class="contato-label">Atendimento</div><div class="contato-valor">Reg. Metropolitana<br>de Campinas</div></div>
-      <div class="contato-item"><div class="contato-icon">🏍️</div><div class="contato-label">Categoria</div><div class="contato-valor">A — Moto</div></div>
+    <div class="cta-info-row">
+      <div class="cta-info"><div class="cta-info-ico">📱</div><div class="cta-info-label">WhatsApp</div><div class="cta-info-val">(19) 99326-4055</div></div>
+      <div class="cta-info"><div class="cta-info-ico">📍</div><div class="cta-info-label">Atendimento</div><div class="cta-info-val">Campinas e Região</div></div>
+      <div class="cta-info"><div class="cta-info-ico">🏍️</div><div class="cta-info-label">Categoria</div><div class="cta-info-val">A — Moto</div></div>
+      <div class="cta-info"><div class="cta-info-ico">⚡</div><div class="cta-info-label">Resposta</div><div class="cta-info-val">Em até 1 hora</div></div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<section id="blog">
+  <div class="container">
+    <div class="reveal">
+      <span class="sec-label">Informação que anda</span>
+      <h2 class="sec-titulo">Blog do Cléssio</h2>
+      <p class="sec-sub">Dicas, novidades e orientações para quem quer tirar ou melhorar na moto.</p>
+    </div>
+    <div class="blog-grid">
+      <a class="blog-card reveal" onclick="abrirArtigo(0);return false;" href="#"><div class="blog-thumb bt1"><div class="blog-tag">Legislação</div>📜</div><div class="blog-body"><h3 class="blog-h">Novas Regras da CNH Cat. A em 2025</h3><p class="blog-p">O CONTRAN atualizou normas para a habilitação de moto. Entenda o que mudou e como se preparar.</p><div class="blog-ft"><span class="blog-data">Maio 2025</span><span class="blog-ler">Ler →</span></div></div></a>
+      <a class="blog-card reveal" onclick="abrirArtigo(1);return false;" href="#"><div class="blog-thumb bt2"><div class="blog-tag">Segurança</div>🛡️</div><div class="blog-body"><h3 class="blog-h">Equipamentos Essenciais para Andar de Moto</h3><p class="blog-p">Do capacete às luvas — o que usar e por quê cada item faz diferença em caso de acidente.</p><div class="blog-ft"><span class="blog-data">Abril 2025</span><span class="blog-ler">Ler →</span></div></div></a>
+      <a class="blog-card reveal" onclick="abrirArtigo(2);return false;" href="#"><div class="blog-thumb bt3"><div class="blog-tag">Exame</div>❌</div><div class="blog-body"><h3 class="blog-h">Reprovei no Exame de Moto — E Agora?</h3><p class="blog-p">Os erros mais comuns na Cat. A — e como trabalhá-los para não repeti-los na próxima tentativa.</p><div class="blog-ft"><span class="blog-data">Março 2025</span><span class="blog-ler">Ler →</span></div></div></a>
+      <a class="blog-card reveal" onclick="abrirArtigo(3);return false;" href="#"><div class="blog-thumb bt4"><div class="blog-tag">Iniciantes</div>😰</div><div class="blog-body"><h3 class="blog-h">Medo de Moto: Como Superar e Ganhar Confiança</h3><p class="blog-p">Insegurança nas primeiras aulas é completamente normal. Veja estratégias que funcionam.</p><div class="blog-ft"><span class="blog-data">Fevereiro 2025</span><span class="blog-ler">Ler →</span></div></div></a>
+      <a class="blog-card reveal" onclick="abrirArtigo(4);return false;" href="#"><div class="blog-thumb bt5"><div class="blog-tag">Manutenção</div>🔧</div><div class="blog-body"><h3 class="blog-h">Revisão Básica da Moto: O Que Todo Motociclista Deve Saber</h3><p class="blog-p">Pneus, freios, óleo, corrente — checklist essencial antes de sair.</p><div class="blog-ft"><span class="blog-data">Janeiro 2025</span><span class="blog-ler">Ler →</span></div></div></a>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="footer-logo">
     <img src="logo.png" alt="Logo" onerror="this.style.display='none'">
@@ -431,85 +779,82 @@ footer{background:var(--azul-escuro);border-top:1px solid var(--linha-ouro);padd
   <div class="footer-copy">© 2025 · Instrutor de Moto · Categoria A · Região Metropolitana de Campinas — SP</div>
 </footer>
 
-<!-- WPP FLOAT -->
-<a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Vi%20seu%20site%20e%20quero%20saber%20mais%20sobre%20as%20aulas%20de%20moto." class="wpp-float" target="_blank" title="WhatsApp">
-  <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
+<a href="https://wa.me/5519993264055?text=Olá%20Cléssio!%20Vi%20seu%20site%20e%20quero%20saber%20mais%20sobre%20as%20aulas." class="wpp-float" target="_blank" title="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg>
 </a>
 
-<!-- MODAL BLOG -->
-<div class="modal-overlay" id="modalOverlay" onclick="fecharModal(event)">
+<div class="modal-ov" id="modalOv" onclick="fecharModal(event)">
   <div class="modal-box">
-    <div class="modal-head"><div class="modal-cat-tag" id="modalCat"></div><h2 class="modal-titulo" id="modalTitulo"></h2><p class="modal-meta" id="modalMeta"></p><button class="modal-close" onclick="fecharModalBtn()">✕</button></div>
-    <div class="modal-content" id="modalContent"></div>
-    <div class="modal-foot"><span class="modal-foot-text">Gostou? Compartilhe!</span><a href="https://wa.me/5519993264055?text=Li%20seu%20artigo%20e%20quero%20saber%20mais." class="btn-wpp" target="_blank" style="font-size:0.88rem;padding:0.65rem 1.3rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg> Falar com Cléssio</a></div>
+    <div class="modal-hd"><div class="modal-tag" id="mCat"></div><h2 class="modal-titulo" id="mTit"></h2><p class="modal-meta" id="mMeta"></p><button class="modal-x" onclick="fecharModalBtn()">✕</button></div>
+    <div class="modal-body" id="mBody"></div>
+    <div class="modal-ft"><span class="modal-ft-txt">Gostou? Compartilhe com quem precisa!</span><a href="https://wa.me/5519993264055?text=Li%20seu%20artigo%20e%20quero%20saber%20mais." target="_blank" class="cta-wpp" style="font-size:0.87rem;padding:0.6rem 1.2rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.112-1.338A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.046-1.107l-.29-.173-3.035.794.813-2.965-.19-.305A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="white"/></svg> Falar com Cléssio</a></div>
   </div>
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-// ── MAPA LEAFLET ──
+// MAPA
 document.addEventListener('DOMContentLoaded', function() {
-  var mapa = L.map('mapa', {
-    center: [-22.92, -47.07],
-    zoom: 10,
-    zoomControl: true,
-    scrollWheelZoom: false
-  });
-
+  var map = L.map('mapa', { center: [-22.93, -47.10], zoom: 10, scrollWheelZoom: false, zoomControl: true });
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors',
-    maxZoom: 18
-  }).addTo(mapa);
-
-  var icone = L.divIcon({
-    html: '<div style="background:#c9a84c;width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>',
-    iconSize: [14, 14],
-    iconAnchor: [7, 7],
-    className: ''
+    attribution: '© OpenStreetMap', maxZoom: 18
+  }).addTo(map);
+  document.getElementById('mapa').style.filter = 'hue-rotate(195deg) saturate(0.55) brightness(0.8)';
+  var ico = L.divIcon({
+    html: '<div style="width:13px;height:13px;background:#c9a84c;border-radius:50%;border:2.5px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.5);"></div>',
+    iconSize:[13,13], iconAnchor:[6,6], className:''
   });
-
-  var cidades = [
-    { nome: 'Campinas', lat: -22.9068, lng: -47.0628 },
-    { nome: 'Sumaré', lat: -22.8220, lng: -47.2700 },
-    { nome: 'Hortolândia', lat: -22.8565, lng: -47.2148 },
-    { nome: 'Indaiatuba', lat: -23.0902, lng: -47.2198 },
-    { nome: 'Valinhos', lat: -22.9705, lng: -46.9957 },
-    { nome: 'Vinhedo', lat: -23.0285, lng: -46.9748 },
-    { nome: 'Americana', lat: -22.7390, lng: -47.3313 },
-    { nome: 'Nova Odessa', lat: -22.7781, lng: -47.2960 },
-    { nome: 'Santa Bárbara d'Oeste', lat: -22.7538, lng: -47.4142 },
-    { nome: 'Monte Mor', lat: -22.9438, lng: -47.3185 }
-  ];
-
-  cidades.forEach(function(c) {
-    L.marker([c.lat, c.lng], { icon: icone })
-      .addTo(mapa)
-      .bindPopup('<b style="font-family:Barlow Condensed,sans-serif;font-size:1rem;color:#0d2255;">' + c.nome + '</b><br><span style="font-size:0.78rem;color:#666;">Cléssio Ferreira · Cat. A</span>');
+  [
+    ['Campinas',-22.9068,-47.0628],['Sumaré',-22.8220,-47.2700],
+    ['Hortolândia',-22.8565,-47.2148],['Indaiatuba',-23.0902,-47.2198],
+    ['Valinhos',-22.9705,-46.9957],['Vinhedo',-23.0285,-46.9748],
+    ['Americana',-22.7390,-47.3313],['Nova Odessa',-22.7781,-47.2960],
+    ["Santa Bárbara d'Oeste",-22.7538,-47.4142],['Monte Mor',-22.9438,-47.3185]
+  ].forEach(function(c){
+    L.marker([c[1],c[2]],{icon:ico}).addTo(map)
+     .bindPopup('<b style="font-size:0.95rem;color:#0d2255;">'+c[0]+'</b><br><span style="font-size:0.75rem;color:#666;">Cléssio Ferreira · Cat. A</span>');
   });
-
-  // Estilo escuro via CSS sobre o tile
-  var mapaEl = document.getElementById('mapa');
-  mapaEl.style.filter = 'hue-rotate(200deg) saturate(0.6) brightness(0.85)';
 });
 
-// ── BLOG ARTIGOS ──
+// FAQ
+function toggleFaq(btn) {
+  var item = btn.parentElement;
+  var answer = item.querySelector('.faq-a');
+  var isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.faq-q.open').forEach(function(b){
+    b.classList.remove('open');
+    b.parentElement.querySelector('.faq-a').classList.remove('open');
+  });
+  if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
+}
+
+// BLOG
 var artigos=[
-  {cat:"Legislação",titulo:"Novas Regras da CNH Cat. A em 2025",meta:"Por Cléssio Ferreira · Maio 2025 · 5 min",conteudo:"<p>O CONTRAN implementou mudanças nas normas para obtenção da Categoria A em 2025.</p><h3>Principais Mudanças</h3><p>O exame prático agora usa sistema digital de avaliação com critérios mais objetivos.</p><h3>O Que Foi Atualizado</h3><ul><li>Critérios revisados das manobras do exame técnico;</li><li>Exigências para o percurso de direção defensiva;</li><li>Normas de segurança para equipamentos nas aulas;</li><li>Processo de adição da Cat. A para quem já tem outra categoria.</li></ul><h3>Como Se Preparar</h3><p>Acompanho cada atualização da legislação. Minhas aulas refletem as exigências atuais do DETRAN de Campinas.</p>"},
-  {cat:"Segurança",titulo:"Equipamentos Essenciais para Andar de Moto com Segurança",meta:"Por Cléssio Ferreira · Abril 2025 · 6 min",conteudo:"<p>Segurança começa antes de dar a partida. Saber o que vestir é parte fundamental da formação.</p><h3>O Capacete</h3><p>Deve ter o selo INMETRO, encaixar corretamente e ser trocado após qualquer impacto.</p><h3>Outros Equipamentos</h3><ul><li><strong>Jaqueta:</strong> com proteções nos cotovelos e ombros;</li><li><strong>Luvas:</strong> protegem as mãos e melhoram o grip;</li><li><strong>Calça resistente:</strong> nunca ande de bermuda;</li><li><strong>Bota:</strong> cobre o tornozelo e protege em quedas.</li></ul>"},
-  {cat:"Exame",titulo:"Reprovei no Exame de Moto — E Agora?",meta:"Por Cléssio Ferreira · Março 2025 · 6 min",conteudo:"<p>Reprovar na Cat. A é mais comum do que parece — e não significa que você não consegue.</p><h3>Erros Mais Comuns no Técnico</h3><ul><li><strong>Baliza:</strong> mais reprovações; exige treino repetitivo;</li><li><strong>Percurso lento:</strong> equilíbrio em baixa velocidade;</li><li><strong>Slalom:</strong> zigue-zague sem derrubar cones.</li></ul><h3>O Próximo Passo</h3><p>Guarde o relatório do examinador. Com esse diagnóstico trabalhamos nos pontos de falha.</p>"},
-  {cat:"Iniciantes",titulo:"Medo de Moto: Como Superar e Ganhar Confiança",meta:"Por Cléssio Ferreira · Fevereiro 2025 · 7 min",conteudo:"<p>Sentir insegurança no início é absolutamente normal. Em 23 anos ajudei centenas de alunos que chegaram tremendo na primeira aula.</p><h3>O Que Funciona</h3><ul><li><strong>Exposição gradual:</strong> começar parado, depois em baixa velocidade;</li><li><strong>Conhecer a moto:</strong> elimina o medo do desconhecido;</li><li><strong>Instrutor certo:</strong> nunca aprenda com quem grita ou pressiona.</li></ul><h3>Meu Compromisso</h3><p>Nunca grito, nunca pressiono. Avanço no seu ritmo.</p>"},
-  {cat:"Manutenção",titulo:"Revisão Básica da Moto: O Que Todo Motociclista Deve Saber",meta:"Por Cléssio Ferreira · Janeiro 2025 · 5 min",conteudo:"<p>Saber verificar a moto antes de sair é tão importante quanto saber pilotá-la.</p><h3>O Checklist Básico</h3><ul><li><strong>Pneus:</strong> pressão e desgaste;</li><li><strong>Freios:</strong> firmeza da alavanca e do pedal;</li><li><strong>Óleo:</strong> nível pelo visor lateral;</li><li><strong>Corrente:</strong> limpa, lubrificada e com tensão correta;</li><li><strong>Luzes:</strong> farol, seta e freio.</li></ul><h3>Regra de Ouro</h3><p>Em caso de dúvida, não saia com a moto.</p>"}
+  {cat:'Legislação',titulo:'Novas Regras da CNH Cat. A em 2025',meta:'Por Cléssio Ferreira · Maio 2025 · 5 min de leitura',conteudo:'<p>O CONTRAN implementou mudanças importantes nas normas para obtenção da Categoria A em 2025. Se você está thinking em tirar a habilitação de moto, é fundamental entender o que mudou.</p><h3>Principais Mudanças</h3><p>O exame prático agora utiliza sistema digital de avaliação com critérios mais objetivos e transparentes. Quem se prepara adequadamente sai em vantagem.</p><h3>O Que Foi Atualizado</h3><ul><li>Critérios revisados das manobras do exame técnico;</li><li>Exigências atualizadas para o percurso de direção defensiva;</li><li>Normas de segurança para equipamentos durante as aulas práticas;</li><li>Processo de adição da Cat. A para quem já tem outra categoria.</li></ul><h3>Como Se Preparar</h3><p>Acompanho de perto cada atualização da legislação de trânsito. Minhas aulas refletem sempre as exigências atuais do DETRAN de Campinas. Fale comigo pelo WhatsApp para conversarmos sobre a sua situação.</p>'},
+  {cat:'Segurança',titulo:'Equipamentos Essenciais para Andar de Moto com Segurança',meta:'Por Cléssio Ferreira · Abril 2025 · 6 min de leitura',conteudo:'<p>Segurança começa antes de dar a partida. Saber o que vestir — e por quê — é parte fundamental da formação de um bom motociclista.</p><h3>O Capacete</h3><p>É o item mais importante. Deve ter o selo INMETRO, se encaixar corretamente e ser trocado após qualquer impacto, mesmo que pareça intacto por fora.</p><h3>Outros Equipamentos Obrigatórios</h3><ul><li><strong>Jaqueta:</strong> de couro ou material resistente, com proteções nos cotovelos e ombros;</li><li><strong>Luvas:</strong> protegem as mãos em quedas e melhoram o grip no guidão;</li><li><strong>Calça resistente:</strong> nunca ande de bermuda ou calça fina;</li><li><strong>Bota:</strong> cobre o tornozelo e protege em caso de queda.</li></ul><h3>Visibilidade no Trânsito</h3><p>Use roupas com elementos refletivos ou cores chamativas. Motociclistas em pontos cegos de carros e caminhões correm risco real — ser visto é parte da segurança.</p>'},
+  {cat:'Exame',titulo:'Reprovei no Exame de Moto — E Agora?',meta:'Por Cléssio Ferreira · Março 2025 · 6 min de leitura',conteudo:'<p>Reprovar no exame prático da Cat. A é mais comum do que parece — e não significa que você não consegue. Significa que falta preparo em pontos específicos.</p><h3>Erros Mais Comuns no Exame Técnico</h3><ul><li><strong>Baliza:</strong> a manobra que mais reprova. Exige treino repetitivo até virar automático;</li><li><strong>Percurso lento:</strong> equilíbrio em baixa velocidade sem apoiar os pés;</li><li><strong>Slalom:</strong> passagem em zigue-zague entre cones sem derrubá-los.</li></ul><h3>Erros Mais Comuns no Exame Prático</h3><ul><li>Falta de sinalização nas conversões;</li><li>Velocidade inadequada;</li><li>Desrespeito à sinalização de trânsito;</li><li>Nervosismo que provoca erros que não acontecem no treino.</li></ul><h3>O Próximo Passo</h3><p>Guarde o relatório do examinador com os erros cometidos. Com esse diagnóstico, trabalhamos cirurgicamente nos pontos de falha. Me chama no WhatsApp.</p>'},
+  {cat:'Iniciantes',titulo:'Medo de Moto: Como Superar e Ganhar Confiança',meta:'Por Cléssio Ferreira · Fevereiro 2025 · 7 min de leitura',conteudo:'<p>Sentir insegurança no início é absolutamente normal — e não é motivo para desistir. Em 23 anos de instrução, ajudei centenas de pessoas que chegaram tremendo para a primeira aula.</p><h3>Por Que Sentimos Medo?</h3><ul><li>A moto exige equilíbrio ativo, diferente do carro;</li><li>Medo do desconhecido é natural em qualquer aprendizado;</li><li>Experiências ruins anteriores aumentam a ansiedade.</li></ul><h3>O Que Funciona</h3><ul><li><strong>Exposição gradual:</strong> começar parado, depois em baixa velocidade, em áreas tranquilas;</li><li><strong>Conhecer a moto:</strong> entender como ela funciona elimina muito do medo do desconhecido;</li><li><strong>Instrutor certo:</strong> jamais aprenda com quem grita ou pressiona.</li></ul><h3>Meu Compromisso</h3><p>Nunca grito, nunca pressiono. Avanço no seu ritmo e faço você sair de cada aula mais confiante.</p>'},
+  {cat:'Manutenção',titulo:'Revisão Básica da Moto: O Que Todo Motociclista Deve Saber',meta:'Por Cléssio Ferreira · Janeiro 2025 · 5 min de leitura',conteudo:'<p>Saber verificar a moto antes de sair é tão importante quanto saber pilotá-la. Muitos acidentes acontecem por falhas mecânicas que poderiam ser evitadas.</p><h3>O Checklist Básico</h3><ul><li><strong>Pneus:</strong> pressão e desgaste;</li><li><strong>Freios:</strong> firmeza da alavanca e do pedal;</li><li><strong>Óleo:</strong> nível pelo visor lateral;</li><li><strong>Corrente:</strong> limpa, lubrificada e com tensão correta;</li><li><strong>Luzes:</strong> farol, seta e freio.</li></ul><h3>Regra de Ouro</h3><p>Em caso de dúvida, não saia com a moto. Uma revisão preventiva é muito mais barata — e segura — do que um acidente.</p>'}
 ];
-function abrirArtigo(i){var a=artigos[i];document.getElementById('modalCat').textContent=a.cat;document.getElementById('modalTitulo').textContent=a.titulo;document.getElementById('modalMeta').textContent=a.meta;document.getElementById('modalContent').innerHTML=a.conteudo;document.getElementById('modalOverlay').classList.add('open');document.body.style.overflow='hidden';}
-function fecharModal(e){if(e.target===document.getElementById('modalOverlay'))fecharModalBtn();}
-function fecharModalBtn(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
+function abrirArtigo(i){var a=artigos[i];document.getElementById('mCat').textContent=a.cat;document.getElementById('mTit').textContent=a.titulo;document.getElementById('mMeta').textContent=a.meta;document.getElementById('mBody').innerHTML=a.conteudo;document.getElementById('modalOv').classList.add('open');document.body.style.overflow='hidden';}
+function fecharModal(e){if(e.target===document.getElementById('modalOv'))fecharModalBtn();}
+function fecharModalBtn(){document.getElementById('modalOv').classList.remove('open');document.body.style.overflow='';}
+
+// NAV / MENU
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
 function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')fecharModalBtn();});
 
-// ── SCROLL REVEAL ──
-var reveals=document.querySelectorAll('.reveal');
-var obs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){setTimeout(function(){entry.target.classList.add('visible');},80);obs.unobserve(entry.target);}});},{threshold:0.08});
-reveals.forEach(function(el){obs.observe(el);});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') fecharModalBtn();
+});
+
+window.addEventListener('scroll',function(){
+  document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>50);
+});
+
+// REVEAL
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('visible');},60);obs.unobserve(e.target);}});},{threshold:0.07});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
 </script>
 </body>
 </html>
